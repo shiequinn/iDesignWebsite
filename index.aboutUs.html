@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css"> 
+    <link rel="stylesheet" href="css/aboutus.css">
+    <title>about us of iDesign website developer company</title>
+</head>
+<body>
+
+<div class="backToHome">
+        <a href="index.html" class="backToHomeLink"><i class="fas fa-home"></i> Back to Home</a>
+</div>
+<div class="about-us">
+<div class="about-us-header">
+        <h1>Know About <i>iDesign</i>  Web Developer Company</h1>
+        <p>Innovative, Reliable, and Client-Focused Web Solutions</p>
+</div>
+</div>
+<div class="about-us-container">
+    <div class="about-us-content slide-left">
+        <h2>About</h2>
+        <img src="images/aboutUs.jpg" alt="About Us" class="about-us-image">
+        <div id="AboutUsText" class="hidden">
+            <p>Founded in 2025, iDesign has been dedicated to delivering innovative and customized web development solutions to clients worldwide.</p>
+            <p>Owned and led by <strong>Ana Marie R. Ranoco</strong>, our team of experienced developers and designers work tirelessly to turn your ideas into reality. With a focus on quality and customer satisfaction, we strive to bring your vision to life and ensure your success in the digital world. </p>
+            <p>We believe in the power of technology to solve real-world problems and improve lives.</p>
+            <p>Join us on our journey to create a better web for everyone!</p>
+   </div> 
+    </div>
+<div class="our-goal slide-right">
+        <h2>Our Goal</h2>
+        <img src="images/ourGoal.jpg" alt="Our Goal" class="our-goal-image">
+        <div id="OurGoalText" class="hidden">
+            <p>To create user-friendly and efficient web applications that meet the needs of our clients.</p>
+            <p>To stay updated with the latest web technologies and trends.</p>
+            <p>To provide exceptional customer service and support.</p>
+            <p>To provide top-notch web development services that exceed our clients' expectations.</p>
+        </div>
+    </div>
+    <div class="our-vision slide-left">
+        <h2>Our Vision</h2>
+        <img src="images/ourVision.jpg" alt="Our Vision" class="our-vision-image">
+        <div id="OurVisionText" class="hidden">
+            <p>To create a collaborative and inclusive environment for our team and clients.</p>
+            <p>To inspire and empower the next generation of web developers.</p>
+            <p>To leverage technology to solve real-world problems and improve lives.</p>
+            <p>To be recognized as a thought leader in the web development community.</p>
+           
+        </div>
+    </div>
+     <div class="our-mission slide-right">
+        <h2>Our Mission</h2>
+        <img src="images/mission.jpg" alt="Our Mission" class="our-mission-image">
+        <div id="OurMissionText" class="hidden">
+            <p>To deliver high-quality web applications that empower businesses and enhance user experiences.</p>
+            <p>To build long-lasting relationships with our clients based on trust and transparency.</p>
+            <p>To prioritize user experience and accessibility in all our projects.</p>
+            <p>To create a positive impact on the web development industry through our work.</p>
+            <p>To be a trusted partner for our clients, helping them achieve their goals through technology.</p>
+         </div>
+    </div>
+    </div>
+
+<div class="footer">
+    <p>&copy; 2025 iDesign &nbsp;Web Developer Company. All rights reserved.</p>
+    <p>Website designed and developed by iDesign Web Developer Company.</p>
+    <p>Follow us on social media:</p>
+    <div class="social-media-icons">
+        <a href="https://www.facebook.com/iDesignWebDeveloper" target="_blank" rel="noopener" title="Visit our Facebook page"><i class="fab fa-facebook"></i></a>
+        <a href="https://twitter.com/shiequinn" target="_blank" rel="noopener" title="Visit our Twitter page"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/shiequinn/" target="_blank" rel="noopener" title="Visit our Instagram page"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/company/shiequinn" target="_blank" rel="noopener" title="Visit our LinkedIn page"><i class="fab fa-linkedin"></i></a>
+    </div>
+    </div>
+
+  <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all the relevant images
+            const images = document.querySelectorAll('.about-us-image, .our-goal-image, .our-vision-image, .our-mission-image');
+    
+            images.forEach(image => {
+                image.addEventListener('click', function() {
+                    // Create the target ID based on the alt attribute
+                    const targetId = this.alt.replace(/\s+/g, '') + 'Text'; // Remove spaces from the alt text and append 'Text'
+    
+                    // Log the ID we expect to work with
+                    console.log("Clicked image:", this.alt);
+                    console.log("Expected target ID:", targetId);
+    
+                    // Hide all text blocks first
+                    const allTextBlocks = document.querySelectorAll('.hidden');
+                    allTextBlocks.forEach(text => text.classList.add('hidden')); // This hides all text blocks
+    
+                    // Show the target text block
+                    const targetText = document.getElementById(targetId);
+                    if (targetText) {
+                        targetText.classList.toggle('hidden'); // Toggle visibility of the specific text block
+                        console.log("Toggled visibility for:", targetId);
+                    } else {
+                        console.error("No text block found with ID:", targetId); // Log an error if the ID doesn't match
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
+
+
+   

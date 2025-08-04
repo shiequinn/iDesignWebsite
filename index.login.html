@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fortawesome.github.io/Font-Awesome/assets/font-awesome.css">
+    <link rel="stylesheet" href="css/login.css">
+    <title>Log-in for members of iDesign Web Developer Company</title>
+</head>
+<body>
+<div class="backToHome">
+    <a href="index.html" class="backToHomeLink"><i class="fas fa-home"></i> Back to Home</a>
+</div>
+<div class="log-in-container">
+<div class="log-in-header">
+    <div class="log-in-intro">
+        <h1>Welcome Back to <i><b>iDesign</b></i> Web Developer Company</h1>
+        <p>Log in to continue your journey with us.</p>
+    </div>
+    <div class="intro">
+        <video id="myVideo" autoplay loop muted>
+            <source src="images/login.mp4" type="video/mp4">
+        </video>
+    </div>
+</div>
+<hr>
+<div class="log-in-area">
+<div class="login-form-container">
+  <form id="loginForm" class="login-form" method="POST" action="#">
+        <label for="email">Email:</label>
+        <input type="email" id="email" autocomplete="email" required>
+
+        <label for="password">Password:</label>
+     <input type="password" id="password" autocomplete="current-password" required>
+        <button type="submit">Login</button>
+    </form>
+</div>
+<div class="login-info">
+    <h2>Why Log In?</h2>
+    <p>Logging in allows you to access your account, manage your projects, and collaborate with our team effectively.</p>
+    <p>If you are not a member yet, please <a href="index.register.html">register here</a>.</p>
+    <p>We value your privacy and security, and we are committed to protecting your information.</p>
+</div>
+</div>
+</div>
+<div class="footer">
+    <p>© 2025 iDesign Web Developer Company. All rights reserved.</p>
+    <p>Website designed and developed by iDesign Web Developer Company.</p>
+    <p>Follow us on social media:</p>
+    <div class="social-media-icons">
+        <a href="https://www.facebook.com/iDesignWebDeveloper" target="_blank" rel="noopener" title="Visit our Facebook page"><i class="fab fa-facebook"></i></a>
+        <a href="https://twitter.com/shiequinn" target="_blank" rel="noopener" title="Visit our Twitter page"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/shiequinn/" target="_blank" rel="noopener" title="Visit our Instagram page"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/company/shiequinn" target="_blank" rel="noopener" title="Visit our LinkedIn page"><i class="fab fa-linkedin"></i></a>
+    </div>
+</div>
+<script>
+// Ensure the DOM is loaded before attaching event
+document.addEventListener('DOMContentLoaded', () => {
+  const loginForm = document.getElementById('loginForm');
+  if (!loginForm) {
+    console.error('Login form not found!');
+    return;
+  }
+
+  // Handle form submission for login
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+
+    const API_URL = 'https://idesignwebdeveloper.shiequinn.com/.netlify/functions/login';
+
+    if (!email || !password) {
+      alert('Please fill in both email and password.');
+      return;
+    }
+
+    console.log('Submitting login:', { email, password });
+
+    try {
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (response.status === 401) {
+        // Unauthorized: invalid email or password
+        alert('Invalid email or password.');
+        return;
+      }
+
+      if (!response.ok) {
+        // Other errors
+        const errorData = await response.json();
+        console.error('Error response:', errorData);
+        alert(errorData.message || 'Login failed.');
+        return;
+      }
+
+      const responseData = await response.json();
+      console.log('Server response:', responseData);
+
+      if (responseData.message === 'Login successful!') {
+        // Save user info and redirect
+        localStorage.setItem('userEmail', responseData.email);
+        localStorage.setItem('userId', responseData.userId);
+        window.location.href = 'index.members.html';
+      } else {
+        alert(responseData.message || 'Invalid email or password.');
+      }
+    } catch (err) {
+      console.error('Fetch error:', err);
+      alert('Error during login: ' + err.message);
+    }
+  });
+});
+</script>
+</body>
+</html>

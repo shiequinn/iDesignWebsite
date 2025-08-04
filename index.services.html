@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css"> 
+    <link rel="stylesheet" href="css/services.css">
+    <title>our services of iDesign web developer company </title>
+</head>
+<body>
+<div class="backToHome">
+        <a href="index.html" class="backToHomeLink"><i class="fas fa-home"></i> Back to Home</a>
+</div> 
+  <div class="services-header">
+    <div class="services-intro">
+    <h1>Innovate.<br>Create. <br>Elevate. <br>— Our Services at Your Fingertips</h1>
+    </div>
+   <div class="intro">
+    <video id="myVideo" autoplay loop muted>
+    <source src="images/services.mp4" type="video/mp4">
+    </video>
+  </div>
+  </div>
+<hr>
+<div class="our-services">
+<div class="our-services-container">
+<div class="services-intro">
+    <h2>Our Services</h2>
+    <p>At &nbsp; <i>iDesign</i> &nbsp;Web Developer Company, we offer a wide range of web development services to help you establish a strong online presence. Whether you need a simple website or a complex web application, we have the expertise to bring your vision to life.</p>
+</div>
+    <ul class="services-list">
+        <li class="service-item">
+            <strong class="service-title">Website Design & Development</strong>
+            <p class="service-description">We create visually appealing and user-friendly websites that are tailored to your needs.</p>
+        </li>
+        <li class="service-item">
+            <strong class="service-title">Responsive Website</strong>
+            <p class="service-description">We ensure that your website looks great on all devices, including desktops, tablets, and smartphones.</p>
+        </li>
+        <li class="service-item">
+            <strong class="service-title">Web Hosting</strong>
+            <p class="service-description">We provide reliable and secure web hosting services to keep your website up and running.</p>
+        </li>
+        <li class="service-item">
+            <strong class="service-title">Domain Registration</strong>
+            <p class="service-description">We can help you register a domain name that reflects your brand and is easy to remember.</p>
+        </li>
+      <li class="service-item">
+            <strong class="service-title">E-commerce Solutions</strong>
+            <p class="service-description">We create online stores that are easy to use and manage, allowing you to sell your products online.</p>
+        </li>
+        <li class="service-item">
+            <strong class="service-title">Payment Gateway Integration</strong>
+            <p class="service-description">We can integrate payment gateways to enable secure online transactions on your website.</p>
+        </li>
+        <li class="service-item">
+            <strong class="service-title">Blog Setup</strong>
+            <p class="service-description">We can help you set up a blog on your website to share your thoughts and ideas with the world.</p>
+        </li>
+        <li class="service-item">
+            <strong class="service-title">Search Engine Optimization (SEO)</strong>
+            <p class="service-description">We optimize your website for search engines to improve its visibility and ranking.</p>
+        </li>
+        <li class="service-item">
+            <strong class="service-title">Social Media Integration</strong>
+            <p class="service-description">We can integrate social media platforms into your website to enhance your online presence.</p>
+        </li>
+        <li class="service-item">
+            <strong class="service-title">Website Maintenance & Updates</strong>
+            <p class="service-description">We offer ongoing website maintenance services to keep your website up-to-date and secure.</p>
+        </li>
+    </ul>
+</div>
+</div>
+ <div class="our-services-details">
+    <p>Contact us today to learn more about our services and how we can help you achieve your web development goals.</p>
+    <p>We look forward to working with you!</p>
+</div> 
+
+<div class="footer">
+    <p>&copy; 2025 iDesign &nbsp;Web Developer Company. All rights reserved.</p>
+    <p>Website designed and developed by iDesign Web Developer Company.</p>
+    <p>Follow us on social media:</p>
+    <div class="social-media-icons">
+        <a href="https://www.facebook.com/iDesignWebDeveloper" target="_blank" rel="noopener" title="Visit our Facebook page"><i class="fab fa-facebook"></i></a>
+        <a href="https://twitter.com/shiequinn" target="_blank" rel="noopener" title="Visit our Twitter page"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/shiequinn/" target="_blank" rel="noopener" title="Visit our Instagram page"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/company/shiequinn" target="_blank" rel="noopener" title="Visit our LinkedIn page"><i class="fab fa-linkedin"></i></a>
+    </div>
+    </div>
+
+
+<script>
+    //services section 
+document.addEventListener('DOMContentLoaded', () => {
+  const titles = document.querySelectorAll('.service-title');
+
+  titles.forEach(title => {
+    title.addEventListener('click', () => {
+      const description = title.nextElementSibling;
+
+      // Debug: log class names before toggle
+      console.log('Before toggle:', description.className);
+
+      const isOpen = description.classList.contains('show');
+
+      // Close all descriptions
+      document.querySelectorAll('.service-description').forEach(desc => {
+        desc.classList.remove('show');
+      });
+      // Remove underline from all titles
+      document.querySelectorAll('.service-title').forEach(t => {
+        t.classList.remove('active');
+      });
+
+      // Toggle current description
+      if (!isOpen) {
+        description.classList.add('show');
+        title.classList.add('active');
+      }
+
+      // Debug: log class names after toggle
+      console.log('After toggle:', description.className);
+    });
+  });
+});
+</script>
+</body>
+</html>
+

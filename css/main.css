@@ -1,0 +1,2086 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+
+}
+
+html {
+    color: #333;
+    overflow-x: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+/* Define the animation for background color */
+@keyframes colorChange {
+    0% {
+        background-color: #ff7f50;
+        /* Starting color (Coral) */
+    }
+
+    25% {
+        background-color: #6a5acd;
+        /* Slate Blue */
+    }
+
+    50% {
+        background-color: #20b2aa;
+        /* Light Sea Green */
+    }
+
+    75% {
+        background-color: #ff69b4;
+        /* Hot Pink */
+    }
+
+    100% {
+        background-color: #ff7f50;
+        /* Back to Coral */
+    }
+}
+
+/* Style the body to animate background */
+body {
+    margin: 0;
+    /* Remove default margin */
+    animation: colorChange 10s infinite ease-in-out;
+}
+/* Set the font size for the body */
+/* Large desktops */
+@media (min-width: 1200px) {
+  body {
+    font-size: 18px;
+  }
+}
+/* Small desktops / landscape tablets */
+@media (min-width: 1024px) {
+  body {
+    font-size: 16px;
+  }
+}
+/* for tablet devices*/
+@media (max-width: 768px) {
+    body {
+        font-size: 16px;
+        margin: 0;
+    }
+
+}
+/* Extra large phones */
+@media (max-width: 480px) {
+    body {
+        font-size: 15px;
+        /* Adjust for larger phones */
+        overflow-x: hidden;
+        margin: 0;
+    }
+}
+/* Large phones */
+@media (max-width: 425px) {
+    body {
+        font-size: 15px;
+        /* Default font size */
+        overflow-x: hidden;
+        margin: 0;
+    }
+}
+/* Medium phones */
+@media (max-width: 375px) {
+    body {
+        font-size: 14px;
+        /* Slightly larger font for better readability */
+        overflow-x: hidden;
+        margin: 0;
+
+    }
+}
+/* Medium phones */
+@media (max-width: 375px) {
+    body {
+        font-size: 14px;
+        /* Slightly larger font for better readability */
+        overflow-x: hidden;
+        margin: 0;
+
+    }
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Montserrat", sans-serif;
+    color: #333;
+    font-weight: 600;
+    text-align: center;
+}
+
+h1 {
+    font-size: 36px;
+    margin: 0;
+}
+
+hr {
+    border: none;
+    height: 10px;
+    background-color: #3b452662;
+    margin: 20px 0;
+}
+
+
+/* header and navigation */
+.header {
+    position: relative;
+    /* for absolute-positioned menu */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 10px;
+    background-color: #ED8171;
+}
+
+/* Logo styling (optional) */
+.logo {
+    width: 100%;
+    height: 100%;
+    /* Adjust as needed */
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
+    width: 80px;
+    /* Adjust as needed */
+    height: auto;
+    /* Maintain aspect ratio */
+}
+
+/* Hamburger styles - hidden on large screens, shown on small screens */
+.hamburger {
+    display: none;
+    /* default hide, shown below for small screens */
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    /* ensure it's above other elements */
+}
+
+/* Hamburger bars */
+.bar {
+    height: 3px;
+    width: 100%;
+    background-color: #333;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.nav .nav-menu {
+    display: flex;
+    /* default for desktop */
+    flex-direction: row;
+    /* horizontal */
+    align-items: center;
+    /* center items vertically */
+    justify-content: center;
+    /* center items horizontally */
+    list-style: none;
+    /* remove bullet points */
+    margin: 0;
+    /* remove default margin */
+    padding: 0;
+    /* remove default padding */
+
+}
+
+.nav-item {
+    margin: 0 10px;
+    /* space between items */
+}
+
+.nav-item a {
+    text-decoration: none;
+    /* remove underline */
+    color: #3A6963;
+    /* white text */
+    font-size: 20px;
+    /* font size */
+    font-weight: 600;
+    /* bold text */
+    transition: color 0.3s ease;
+    /* smooth color change on hover */
+}
+
+.nav-item a:hover {
+    text-decoration: underline;
+    /* underline on hover */
+    transition: color 0.3s ease;
+    /* smooth color change on hover */
+    background-color: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+    /* rounded corners */
+
+}
+
+/* Styles for menu items */
+.nav-item {
+    padding: 5px 5px;
+}
+
+.nav-item a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+}
+
+.nav-item a:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Styles for transforming hamburger into "X" when open */
+.hamburger.open .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.open .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.open .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Media queries for responsive design */
+@media(max-width:840px){
+    .nav-item a {
+        font-size: 18px;
+        /* smaller font size for mobile */
+        padding: 10px;
+        /* padding for touch targets */
+    }
+
+    .nav-item a:hover {
+        background-color: #f8f8f8;
+        /* maintain hover effect */
+        padding: 10px;
+        /* smaller padding for hover */
+    }
+
+    .hamburger {
+        display: flex;
+        width: 30px;
+        /* smaller hamburger for mobile */
+        height: 25px;
+        /* smaller height for mobile */
+    }
+    .nav .nav-menu {
+        display: none;
+        flex-direction: column;
+        /* stack vertically if shown */
+        position: absolute;
+        /* overlay */
+        top: 90px;
+        /* adjust based on your header height */
+        left: 0;
+        width: 100%;
+        background-color: #ED8171;
+        /* match your header color or desired bg */
+        z-index: 999;
+        /* ensure it's above other elements */
+    }
+    /* Show menu when active */
+    .nav .nav-menu.active {
+        display: flex;
+    }
+}
+
+@media(max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    /* Hide the menu initially */
+    .nav .nav-menu {
+        display: none;
+        flex-direction: column;
+        /* stack vertically if shown */
+        position: absolute;
+        /* overlay */
+        top: 90px;
+        /* adjust based on your header height */
+        left: 0;
+        width: 100%;
+        background-color: #ED8171;
+        /* match your header color or desired bg */
+        z-index: 999;
+        /* ensure it's above other elements */
+    }
+
+    /* Show menu when active */
+    .nav .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-item a {
+        font-size: 18px;
+        /* smaller font size for mobile */
+        padding: 10px;
+        /* padding for touch targets */
+    }
+
+    .header {
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        /* ensure it's above other elements */
+    }
+
+}
+@media(max-width: 460px) {
+    .nav-item a {
+        font-size: 16px;
+        /* smaller font size for mobile */
+        padding: 10px;
+        /* padding for touch targets */
+    }
+
+    .nav-item a:hover {
+        background-color: #f8f8f8;
+        /* maintain hover effect */
+        padding: 10px;
+        /* smaller padding for hover */
+    }
+
+    .hamburger {
+        width: 30px;
+        /* smaller hamburger for mobile */
+        height: 25px;
+        /* smaller height for mobile */
+    }
+}
+
+@media(max-width: 360px) {
+    .nav-item a {
+        font-size: 16px;
+        /* smaller font size for very small screens */
+        padding: 10px;
+        /* smaller padding for touch targets */
+    }
+    
+    .nav-item a:hover {
+        background-color: #f8f8f8;
+        /* maintain hover effect */
+        padding: 10px;
+        /* smaller padding for hover */
+    }
+
+    .hamburger {
+        width: 25px;
+        /* smaller hamburger for very small screens */
+        height: 25px;
+        /* smaller height for very small screens */
+    }
+    .logo-image {
+        width: 50px;
+        /* smaller logo image for very small screens */
+        height: auto;
+        /* maintain aspect ratio */
+
+    }
+    .logo-text{
+        font-size: 25px;
+    }
+    .nav .nav-menu {
+        display: none;
+        flex-direction: column;
+        /* stack vertically if shown */
+        position: absolute;
+        /* overlay */
+        top: 60px;
+        /* adjust based on your header height */
+        left: 0;
+        width: 100%;
+        background-color: #ED8171;
+        /* match your header color or desired bg */
+        z-index: 999;
+        /* ensure it's above other elements */
+    }
+
+}
+
+
+
+/* intro section */
+.intro {
+    width: 100%;
+    height: 700px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+
+}
+
+Video {
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+
+}
+
+.myVideoServices {
+    object-fit: cover;
+    width: 50%;
+    height: 50%;
+}
+
+.intro-slide {
+    position: absolute;
+    top: 50%;
+    left: -100%;
+    transform: translateY(-50%);
+    width: 100%;
+    max-width: 600px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    animation: slideLeftRight 10s ease-in-out forwards;
+}
+
+@keyframes slideLeftRight {
+    0% {
+        left: -100%;
+    }
+
+    20% {
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+    }
+
+    80% {
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+    }
+
+    100% {
+        left: 200%;
+        transform: translateX(-50%) translateY(-50%);
+    }
+}
+
+/* Style the image container if needed */
+.intro-image {
+    max-width: 400px;
+    height: 300px;
+    /* adjust as needed */
+}
+
+.intro-text h1 {
+    color: #3A6963;
+    text-align: start;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.intro-text p {
+    font-size: 18px;
+    line-height: 1.5;
+    color: #3A6963;
+    text-align: start;
+    margin-bottom: 5px;
+}
+
+.social-media-icons i {
+    font-size: 20px;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.social-media-icons i:hover {
+    color: #3A6963;
+}
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+    .intro {
+         width: 100%;
+        height: 500px;
+        /* Adjust height for smaller screens */
+    }
+
+    .intro-slide {
+        width: 60%;
+        /* Adjust width for smaller screens */
+        height: 100%;
+        left: 0;
+        /* Center the slide */
+        transform: translateY(-50%);
+        animation: slideLeftRight 10s ease-in-out forwards;
+    }
+
+    /* Adjust the text size for smaller screens */
+    .intro-text h1 {
+        font-size: 24px;
+        /* Smaller font size for heading */
+    }
+
+    /* Adjust the paragraph size for smaller screens */
+    .intro-text p {
+        font-size: 16px;
+        /* Smaller font size for paragraphs */
+    }
+    /*adjust the video size for smaller screens */  
+    #myVideo {
+        width: 100%;
+        /* Full width for smaller screens */
+        height: 100%;
+        /* Auto height to maintain aspect ratio */
+
+    }
+    .intro-image {
+        max-width: 250px;
+        /* Smaller max width for images */
+        height: 150px;
+        /* Maintain aspect ratio */
+    }
+}
+@media (max-width: 460px){
+    .intro {
+        width: 100%;
+        height: 550px;
+        /* Adjust height for smaller screens */
+    }
+
+    .intro-slide {
+        width: 80%;
+        /* Adjust width for smaller screens */
+        height: 100%;
+        left: 0;
+        /* Center the slide */
+        transform: translateY(-50%);
+        animation: slideLeftRight 10s ease-in-out forwards;
+    }
+
+    /* Adjust the text size for smaller screens */
+    .intro-text h1 {
+        font-size: 20px;
+        /* Smaller font size for heading */
+    }
+
+    /* Adjust the paragraph size for smaller screens */
+    .intro-text p {
+        font-size: 14px;
+        /* Smaller font size for paragraphs */
+    }
+  
+}
+/* Show on screens <= 360px */
+@media (max-width: 360px) {
+    .intro {
+        height: 560px;
+        /* Adjust height for smaller screens */
+    }
+
+    .intro-slide {
+        width: 90%;
+        /* Adjust width for smaller screens */
+        height: 100%;
+        left: 0;
+        /* Center the slide */
+        transform: translateY(-50%);
+        animation: slideLeftRight 10s ease-in-out forwards;
+    }
+
+    /* Adjust the text size for smaller screens */
+    .intro-text h1 {
+        font-size: 20px;
+        /* Smaller font size for heading */
+    }
+
+    /* Adjust the paragraph size for smaller screens */
+    .intro-text p {
+        font-size: 16px;
+        /* Smaller font size for paragraphs */
+    }
+
+    /*adjust the video size for smaller screens */
+    #myVideo {
+        width: 100%;
+        /* Full width for smaller screens */
+        height: 100%;
+        /* Auto height to maintain aspect ratio */
+
+    }
+
+    .intro-image {
+        max-width: 200px;
+        /* Smaller max width for images */
+        height: 100px;
+        /* Maintain aspect ratio */
+    }
+}
+
+/*projects section*/
+.projects {
+    max-width: 1200px;
+    /* Container max width */
+    margin: 0 auto;
+    /* Center the container */
+    padding: 10px;
+    /* Inner spacing */
+    display: flex;
+    /* Flexbox for layout */
+    flex-direction: column;
+    /* Column layout */
+    align-items: center;
+    /* Center items */
+    justify-content: center;
+    /* Center items */
+    text-align: center;
+    /* Center text */
+}
+
+.project-list-container {
+    max-width: 100%;
+    margin: auto;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    overflow: hidden;
+    position: relative;
+
+}
+
+.project-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+
+}
+
+.project-item {
+    width: calc(33.33% - 40px);
+    /* 3 items per row with margin */
+    height: auto;
+    margin: 20px;
+    padding: 10px;
+    background-color: #9bc3be;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for depth */
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    /* Light border */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+
+}
+
+.project-item:hover {
+    transform: scale(1.03);
+    /* Slightly enlarge the box on hover */
+    transition: transform 0.3s ease;
+    /* Smooth transition for hover effect */
+}
+
+.project-item p {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    text-decoration: underline;
+}
+
+.project-item a {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 20px 0;
+    background-color:#333;
+    /* Dark background for links */
+    color: #f8f8f8;
+    /* Light text color */
+    border-radius: 5px;
+    text-decoration: none;
+    /* Remove underline */
+    padding: 10px;
+    /* Remove default padding */
+
+}
+
+.project-item a:hover {
+    background-color: #ED8171;
+    /* Darker background on hover */
+    color: #f8f8f8;
+    /* Light text color on hover */
+    transition: background-color 0.3s ease;
+    /* Smooth transition for hover effect */
+}
+
+
+.project-image {
+    position: relative;
+    /* Needed for pseudo-element positioning */
+    object-fit: cover;
+    /* Maintain aspect ratio */
+    border-radius: 10px;
+    /* Rounded corners */
+    width: 300px;
+    height: 400px;
+    object-position: top;
+    /* Position the image at the top center */
+    transition: transform 0.3s ease;
+    /* Smooth transition for hover effect */
+}
+
+.project-image:hover {
+    transform: scale(1.07);
+    /* Slightly enlarge the image on hover */
+}
+
+
+.project-item h3 {
+    font-size: 20px;
+    /* Heading size */
+    color: #333;
+    /* Heading color */
+    margin-bottom: 10px;
+    /* Space below heading */
+    font-weight: bold;
+    /* Bold weight */
+    text-align: center;
+    /* Center align heading */
+    text-transform: uppercase;
+    /* Uppercase heading */
+
+}
+/* Default styles for large screens (desktop) */
+
+@media(max-width: 840px){
+    .project-item {
+        width: calc(50% - 40px);
+        /* 2 items per row with margin */
+        height: auto;
+        margin: 20px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .projects {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .project-image {
+        width: 300px;
+        height: 400px;
+        /* Auto height to maintain aspect ratio */
+        object-fit: cover;
+    }
+
+    .project-image:hover {
+        transform: scale(1.05);
+        /* Slightly enlarge the image on hover */
+    }
+
+    .project-list {
+        flex-direction: row;
+        /* Row layout for larger screens */
+    }
+
+    .project-list-container {
+        padding: 0;
+    }
+
+    .project-item p {
+        font-size: 18px;
+    }
+
+    .project-item a {
+        font-size: 16px;
+    }
+
+    .projects-header {
+        font-size: 20px;
+    }
+
+}
+/* Medium screens - up to 768px */
+@media(max-width: 768px){
+    .project-item {
+        width: 100%;
+        /* Full width for smaller screens */
+        height: 400px;
+        margin: 10px 0;
+        /* Adjust margin for better spacing */
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        position:relative;
+    }
+
+    .projects {
+        margin: 10px;
+        padding: 20px;
+        /* Adjust padding for smaller screens */
+    }
+
+    .project-image {
+        width:300px;
+        height:350px;
+        /* Auto height to maintain aspect ratio */
+        object-fit: cover;
+    }
+
+    .project-image:hover {
+        transform: scale(1.0);
+        /* Slightly enlarge the image on hover */
+    }
+
+    .project-list {
+        flex-direction: column;
+        /* Stack items vertically */
+        align-items: center;
+        /* Center items horizontally */
+        padding: 10px;
+        margin-top: 10px;
+    }
+
+    .project-list-container {
+        padding: 0;
+        /* Adjust padding for smaller screens */
+    }
+
+    .project-item p {
+        font-size: 16px;
+        /* Smaller font size for paragraphs */
+    }
+
+    .project-item a {
+        position: absolute;
+        font-size: 14px;
+        top: 60%;
+        left: 10%;
+        width:150px;
+        /* Smaller font size for links */
+        margin: 10px;
+    }
+
+    .projects-header {
+        font-size: 16px;
+        /* Smaller font size for headings */
+        padding: 0;
+        /* Adjust padding for smaller screens */
+    }
+
+    .projects-header h2 {
+        margin: 0;
+        /* Adjust margin for better spacing */
+    }
+
+    .projects-header p {
+        font-size: 16px;
+        /* Smaller font size for paragraphs */
+        margin: 5px 0;
+        /* Adjust margin for better spacing */
+    }
+    
+}
+@media(max-width: 540px){
+    .project-item {
+        width: 100%;
+        /* Full width for smaller screens */
+        height: 400px;
+        margin: 10px 0;
+        /* Adjust margin for better spacing */
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        position:relative;
+    }
+
+    .projects {
+        margin: 10px;
+        padding: 20px;
+        /* Adjust padding for smaller screens */
+    }
+
+    .project-image {
+        width:250px;
+        height:350px;
+        /* Auto height to maintain aspect ratio */
+        object-fit: cover;
+    }
+
+    .project-image:hover {
+        transform: scale(1.0);
+        /* Slightly enlarge the image on hover */
+    }
+
+    .project-list {
+        flex-direction: column;
+        /* Stack items vertically */
+        align-items: center;
+        /* Center items horizontally */
+        padding: 10px;
+        margin-top: 10px;
+    }
+
+    .project-list-container {
+        padding: 0;
+        /* Adjust padding for smaller screens */
+    }
+
+    .project-item p {
+        font-size: 16px;
+        /* Smaller font size for paragraphs */
+    }
+
+    .project-item a {
+        position: absolute;
+        font-size: 14px;
+        top: 60%;
+        left: 5%;
+        width:150px;
+        /* Smaller font size for links */
+        margin: 10px;
+    }
+
+    .projects-header {
+        font-size: 16px;
+        /* Smaller font size for headings */
+        padding: 0;
+        /* Adjust padding for smaller screens */
+    }
+
+    .projects-header h2 {
+        margin: 0;
+        /* Adjust margin for better spacing */
+    }
+
+    .projects-header p {
+        font-size: 16px;
+        /* Smaller font size for paragraphs */
+        margin: 5px 0;
+        /* Adjust margin for better spacing */
+    }
+    
+}
+
+/* Smaller screens - up to 460px */
+@media (max-width: 460px) {
+    .project-item {
+        display: flex;
+        flex-direction: column;
+        /* Stack items vertically */
+        align-items: center;
+        /* Center items horizontally */
+        position: relative;
+        width: 350px;
+        /* Full width for smaller screens */
+        height: 450px;
+        /* Adjust margin for better spacing */
+        margin: 20px 0 0 0;
+    }
+
+    .projects {
+        width: 100%;    
+        /* Full width for smaller screens */
+        height: auto;
+        display: flex;
+        margin:0;
+        padding:20px;
+        /* Adjust padding for smaller screens */
+    }
+
+    .project-image {
+        width:300px;
+        /* Full width for images */
+        height:300px;
+        /* Auto height to maintain aspect ratio */
+        object-fit: cover;
+    }
+
+    .project-image:hover {
+        transform: scale(1.0);
+        /* Slightly enlarge the image on hover */
+    }
+
+    .project-list {
+        flex-direction: column;
+        /* Stack items vertically */
+        align-items: center;
+        /* Center items horizontally */
+        padding: 10px;
+        margin-top: 5px;
+    }
+
+    .project-list-container {
+        width: 100%;
+        /* Full width for smaller screens */
+        height: auto;
+        /* Adjust padding for smaller screens */
+    }
+
+    .project-item a {
+        position: absolute;
+        top: 87%;
+        left: 25%;
+        width: 150px;
+        font-size: 14px;
+
+        /* Smaller font size for links */
+    
+    }
+}
+@media (max-width: 390px){
+    .project-item {
+        width: 320px;
+        /* Full width for smaller screens */
+        height: 450px;
+        margin: 20px 0 0 0;
+        /* Adjust margin for better spacing */
+    }
+    .project-list-container {
+        width: 100%;
+        /* Full width for smaller screens */
+        height: auto;
+        padding:0;
+        margin:0;
+
+    }
+
+    .project-item a {
+        position: absolute;
+        top: 87%;
+        left: 25%;
+        width: 150px;
+        font-size: 14px;
+
+        /* Smaller font size for links */
+
+    }
+    .project-image{
+        width: 250px;
+        /* Full width for images */
+        height: 300px;
+        /* Auto height to maintain aspect ratio */
+        object-fit: cover;
+    }
+    .project-list{
+        flex-direction: column;
+        /* Stack items vertically */
+        align-items: center;
+        /* Center items horizontally */
+        padding:0;
+        margin:0;
+
+    }
+}
+/* Very small screens - up to 360px */
+@media (max-width: 360px) {
+    .project-item {
+        width: 100%;
+        /* Full width for smaller screens */
+        height: 440px;
+        margin: 20px 0 0 0;
+        /* Adjust margin for better spacing */
+        padding:5px;
+    }
+
+    .projects {
+        margin-top: 20px;
+        padding: 10px;
+        /* Adjust padding for smaller screens */
+    }
+
+    .project-image {
+        width: 250px;
+        /* Full width for images */
+        height:300px;
+        /* Auto height to maintain aspect ratio */
+        object-fit:cover;
+    }
+
+    .project-image:hover {
+        transform: scale(1.0);
+        /* Slightly enlarge the image on hover */
+    }
+
+    .project-list {
+        flex-direction: column;
+        /* Stack items vertically */
+        align-items: center;
+        /* Center items horizontally */
+        padding: 10px;
+        margin-top: 5px;
+    }
+
+    .project-list-container {
+        padding: 10px;
+        /* Adjust padding for smaller screens */
+        width: 100%;
+
+    }
+
+    .project-item p {
+        font-size: 16px;
+        /* Smaller font size for paragraphs */
+    }
+
+    .project-item a {
+        font-size: 14px;
+        /* Smaller font size for links */
+        margin: 10px;
+        position: absolute;
+        top: 87%;
+        left: 22%;
+        width: 150px;
+
+    
+    }
+
+    .projects-header {
+        font-size: 16px;
+        /* Smaller font size for headings */
+        padding: 0;
+        /* Adjust padding for smaller screens */
+    }
+
+    .projects-header h2 {
+        margin: 0;
+        /* Adjust margin for better spacing */
+    }
+
+    .projects-header p {
+        font-size: 16px;
+        /* Smaller font size for paragraphs */
+        margin: 5px 0;
+        /* Adjust margin for better spacing */
+    }
+
+    .project-item h3 {
+        font-size: 18px;
+        /* Smaller font size for headings */
+        margin: 5px 0;
+        /* Adjust margin for better spacing */
+    }
+
+} 
+
+/*services section*/
+.our-services {
+    max-width: 1200px;
+    /* Container max width */
+    height: 500px;
+    margin: 0 auto;
+    /* Center the container */
+    padding: 10px;
+    /* Inner spacing */
+    display: flex;
+    /* Flexbox for layout */
+    flex-direction: column;
+    /* Column layout */
+    align-items: center;
+    /* Center items */
+    justify-content: center;
+    /* Center items */
+    text-align: center;
+    /* Center text */
+}
+
+.services-header,
+.projects-header,
+.reviews-header {
+    font-size: 18px;
+    /* Heading size */
+    text-align: center;
+    margin-bottom: 5px;
+    font-weight: 600;
+    /* Heading weight */
+    padding: 5px;
+    margin-top: 5px;
+    /* Space above heading */
+    background-color: transparent;
+    border-radius: 10px;
+    /* Rounded corners */
+    transition: transform 0.3s;
+    /* Smooth transition for hover effects */
+    width: 100%;
+    /* Full width */
+}
+
+.our-services h2,
+.projects-header h2,
+.reviews-header h2,
+.contact-us-header h2,
+.services-header h2,
+.company-information h2,
+.our-location h2,
+.about-us-content h2,
+.our-goal h2,
+.our-vision h2,
+.our-mission h2 {
+    margin-bottom: 5px;
+    /* Space below heading */
+    font-weight: 600;
+    /* Bold weight */
+    text-align: center;
+    /* Center align heading */
+    text-transform: uppercase;
+    /* Uppercase heading */
+    text-decoration: underline;
+    /* Underline heading */
+}
+
+.our-services p,
+.projects-header p,
+.contact-us-header p,
+.contact-us p,
+.reviews-header p,
+.services-header p {
+    color: #333;
+    /* Paragraph color */
+    margin-bottom: 5px;
+    /* Space below paragraph */
+    font-weight: 600;
+    /* Bold weight */
+    text-align: justify;
+    /* Justify text for better alignment */
+    padding: 5px;
+    /* Inner spacing */
+    max-width: 1200px;
+    /* Container max width */
+    text-align: center;
+    /* Center align text */
+    font-size: 16px;
+    /* Paragraph size */
+}
+
+.services-list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    /* 4 columns */
+    gap: 20px;
+    /* Space between items */
+    list-style-type: none;
+    /* Remove bullet points */
+    padding: 20px;
+}
+
+.service-item {
+    border: 4px solid #ccc;
+    /* Light border */
+    border-radius: 8px;
+    /* Rounded corners */
+    padding: 10px;
+    /* Inner spacing */
+    text-align: center;
+    /* Left align text */
+    transition: transform 0.3s;
+    /* Smooth transition for hover effects */
+}
+
+.service-description {
+    display: none;
+    font-size: 16px;
+    /* Description size */
+    margin-top: 10px;
+    /* Space above description */
+    font-weight: 400;
+    /* Normal weight */
+    line-height: 1.5;
+    /* Line height for readability */
+    text-align: justify;
+    /* Justify text for better alignment */
+    margin-bottom: 0;
+    /* Remove bottom margin */
+    padding: 0;
+    /* Remove padding */
+
+}
+.service-description.show {
+    display: block;
+    /* Show description on click */
+    color: #eae3e3;
+}
+
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.our-services-details {
+    font-size: 20px;
+    /* Details size */
+    color: #eae3e3;
+    /* Details color */
+    margin-top: 10px;
+    /* Space above details */
+    font-weight: 400;
+    /* Normal weight */
+    line-height: 1.5;
+    /* Line height for readability */
+    text-align: center;
+    /* Justify text for better alignment */
+    margin-bottom: 0;
+    /* Remove bottom margin */
+    padding: 0;
+    /* Remove padding */
+
+    /* Add animation */
+    animation: slideInFromLeft 5s ease-out infinite;
+    /* Infinite animation */
+}
+
+.service-title {
+    font-size: 18px;
+    /* Title size */
+    color: #eae3e3;
+    /* Title color */
+    margin-bottom: 10px;
+    /* Space below title */
+    font-weight: 600;
+    /* Bold weight */
+    text-align: center;
+    /* Center align title */
+    cursor: pointer;
+    /* Pointer cursor for interactivity */
+}
+ .service-title:active{
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+
+.service-item:hover {
+    transform: scale(1.05);
+    /* Slightly enlarge the box on hover */
+}
+
+.service-description {
+    display: none;
+    /* Hide descriptions by default */
+
+}
+
+
+/* Responsive Design */
+ @media(max-width: 840px) {
+    .services-list {
+        grid-template-columns: repeat(2, 1fr);
+        padding:20px;
+        /* 2 columns for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .our-services{
+        width: 100%;
+        /* Full width for smaller screens */
+        height: auto;
+        padding: 10px;
+        /* Adjust padding for smaller screens */
+    }
+    .services-list {
+        grid-template-columns: 1fr;
+        /* 1 column for mobile devices */
+    }
+
+    .service-item {
+        width: 100%;
+        /* Full width for smaller screens */
+        height: auto;
+        /* Auto height to fit content */
+        margin: 10px 0;
+        /* Adjust margin for better spacing */
+    }
+
+    .service-description {
+        font-size: 14px;
+        /* Smaller font size for descriptions */
+    }
+
+    .service-title {
+        font-size: 16px;
+        /* Smaller font size for titles */
+    }
+    .service-title:active{
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
+@media (max-width: 390px){
+    .our-services {
+        width:100%;
+        /* Full width for smaller screens */
+        height:auto;
+        padding: 10px;
+        /* Adjust padding for smaller screens */
+    }
+    .services-list {
+        grid-template-columns: 1fr;
+        /* 1 column for mobile devices */
+    }
+
+}
+
+
+/* reviews section */
+.reviews {
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    background-color: transparent;
+    /* Light background color */
+    padding: 20px;
+    /* Inner spacing */
+    display: flex;
+    /* Flexbox for layout */
+    flex-direction: column;
+    /* Column layout */
+    border-radius: 10px;
+    align-items: start;
+    justify-content: start;
+    text-align: center;
+
+
+}
+
+.reviews-container {
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    padding: 5px;
+    /* Inner padding */
+    display: flex;
+    /* Using flexbox */
+    flex-direction:row;
+    gap: 10px;
+    /* Space between reviews */
+    align-items: start;
+    justify-content: space-between;
+    /* Center items horizontally */
+    overflow: hidden;
+    /* Hide overflow for sliding effect */
+
+
+}
+
+/* Style for the content wrapper that will slide */
+#reviewWrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    overflow: hidden;
+    width: 100%;
+}
+
+.client-item-container {
+    position: relative;
+    max-width: 100%;
+    height: 100%;
+    /* Auto height to fit content */
+    margin: 20px;
+    padding: 20px;
+
+}
+
+.review-slider {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Navigation buttons */
+.prev-btn,
+.next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    font-size: 2em;
+    cursor: pointer;
+    color: #555;
+    padding: 10px;
+    z-index: 10;
+    transition: color 0.3s;
+}
+
+.prev-btn:hover,
+.next-btn:hover {
+    color: #333;
+    /* Darker color on hover */
+}
+
+#prevBtn {
+    left: -40px;
+}
+
+#nextBtn {
+    right: -40px;
+}
+
+.review-form {
+ display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    background-color: beige;
+    width: 80%;
+    margin: 20px auto;
+    /* Center the container */
+    padding: 20px;
+    /* Inner spacing */
+    transition: transform 0.3s;
+    /* Smooth transition for hover effects */
+    overflow: hidden;
+    /* Hide overflow */
+    border-radius: 10px;
+
+}
+
+.review-item {
+    width: 100%;
+    /* Fixed width for each review box */
+    height: auto;
+    /* Auto height to fit content */
+    background-color: transparent;
+    display: none;
+    align-items: center;
+    flex-direction: row;
+    /* Row layout for profile and text */
+    justify-content: flex-start;
+    /* Align items to the start */
+    margin: 10px;
+    /* Space between review boxes */
+}
+.review-item.active {
+  display: flex; /* or block, to show the selected review */
+}
+
+.review-item:hover {
+    transform: scale(1.05);
+    /* Slightly enlarge the box on hover */
+    transition: transform 0.3s ease;
+    /* Smooth transition for hover effect */
+}
+
+.client-profile {
+    width: 100px;
+    /* Set a fixed width for the profile image */
+    height: 100px;
+    /* Set a fixed height to keep images uniform */
+    border-radius: 50%;
+    /* Make the image circular */
+    margin-right: 15px;
+    /* Space between the image and the text */
+
+
+}
+
+.client-profile img {
+    width: 100%;
+    /* Make the image fill the container */
+    height: 100%;
+    /* Make the image fill the container */
+    object-fit: cover;
+    /* Maintain aspect ratio and cover the container */
+    align-items: center;
+}
+
+.review-content {
+    flex: 1;
+    /* Let the review content take the remaining space */
+}
+
+.client-name {
+    font-weight: bold;
+    /* Make client name bold */
+    margin: 10px;
+    /* Remove default margin */
+}
+
+.client-position {
+    color: #eae3e3;
+    /* Grey color for position text */
+    margin: 0;
+    /* Remove default margin */
+}
+
+.client-review {
+    font-style: italic;
+    /* Italicize the review text */
+    margin-top: 5px;
+    /* Add some space above the review text */
+}
+
+/* Container for the review form */
+
+
+/* Heading for the form */
+.review-form h3 {
+    margin-bottom: 5px;
+    color: #333;
+    text-align: center;
+}
+
+/* Labels styling */
+.review-form form label {
+    display:flex;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Input fields styling */
+.review-form  form input[type="text"],
+.review-form form textarea {
+    width: 100%;
+    padding: 5px 5px;
+    margin-bottom: 3px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+/* Focus effect on inputs */
+.review-form form input[type="text"]:focus,
+.review-form form textarea:focus {
+    border-color: #0066cc;
+    outline: none;
+}
+
+/* Submit button styling */
+.review-form  form button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background-color 0.3s;
+}
+
+/* Hover effect on button */
+.review-form  form button:hover {
+    background-color: #ED8171;
+}
+
+/* Responsive Design for reviews section */
+@media(max-width: 840px){
+    .review {
+        width: 100%;
+        height:600px;
+        padding: 0;
+        margin-bottom: 10px;
+        /* Auto height to fit content */
+        flex-direction:column;
+        /* Stack items vertically */
+        align-items: center;
+        /* Center items horizontally */
+        overflow: visible;
+
+    }
+    .reviews-container {
+        width: 100%;
+        /* Full width for smaller screens */
+        height: 500px;
+        flex-direction:row;
+        align-items: center;
+        /* Center items horizontally */
+        padding: 10px;
+        /* Adjust padding for smaller screens */
+    }
+
+    .client-item-container {
+        width: 50%;
+        /* Full width for smaller screens */
+        height:auto;
+        /* Auto height to fit content */
+        margin: 0;
+        padding:20px;
+        /* Adjust margin for better spacing */
+        
+    }
+
+    .review-item {
+        
+        width:100%;
+        /* Full width for smaller screens */
+        height: auto;
+        /* Auto height to fit content */
+        flex-direction: column;
+        /* Stack items vertically */
+        align-items: center;
+        /* Center items horizontally */
+    }
+    .review-form {
+        width:40%;
+        height: 350px;
+        /* Full width for smaller screens */
+        padding: 5px;
+        /* Adjust padding for smaller screens */
+        margin:10px;
+    }
+    .client-profile {
+        width: 80px;
+        /* Smaller width for profile image */
+        height: 80px;
+        /* Smaller height for profile image */
+        margin-bottom: 5px;
+        /* Space below profile image */
+    }
+    .review-content {
+        text-align: center;
+        /* Center align text for smaller screens */
+    }
+    .next-btn{
+        right: -100px;
+        /* Adjust position for smaller screens */
+    }
+    .prev-btn{
+        left: -50px;
+        /* Adjust position for smaller screens */
+    }
+
+}
+
+
+@media (max-width: 460px) {
+    .review {
+        width: 100%;
+        height: auto;
+        padding: 0;
+        margin: 0;
+        /* Auto height to fit content */
+        flex-direction: column;
+        /* Stack items vertically */
+        align-items: center;
+        /* Center items horizontally */
+        overflow: visible;
+        display: flex;
+        /* Use flexbox for layout */
+
+    }
+
+    .reviews-container {
+        width: 100%;
+        /* Full width for smaller screens */
+        height: auto;
+        flex-direction: column;
+        /* Stack items vertically */
+        align-items: center;
+        /* Center items horizontally */
+        padding: 10px;
+        /* Adjust padding for smaller screens */
+    }
+
+    .client-item-container {
+        width: 100%;
+        /* Full width for smaller screens */
+        height: auto;
+        /* Auto height to fit content */
+        margin: 0;
+        padding:0;
+        /* Adjust margin for better spacing */
+    }
+
+    .review-item {
+        width: 100%;
+        /* Full width for smaller screens */
+        height: auto;
+        /* Auto height to fit content */
+        flex-direction: column;
+        /* Stack items vertically */
+        align-items: center;
+        /* Center items horizontally */
+    }
+    .review-form{
+        width: 50%;
+        height: 100px;
+        /* Full width for smaller screens */
+        padding: 3px;
+        /* Adjust padding for smaller screens */
+    }
+
+    .client-profile {
+        width: 80px;
+        /* Smaller width for profile image */
+        height: 80px;
+        /* Smaller height for profile image */
+        margin-bottom: 5px;
+        /* Space below profile image */
+    }
+
+    .review-content {
+        text-align: center;
+        /* Center align text for smaller screens */
+    }
+
+    .review-form {
+        width: 100%;
+        height: 290px;
+        /* Full width for smaller screens */
+        padding: 5px;
+        /* Adjust padding for smaller screens */
+    }
+
+    .review-form h4 {
+        font-size: 14px;
+        /* Adjust heading size for smaller screens */
+    }
+
+    .review-form input[type="text"],
+    .review-form textarea {
+        font-size: 14px;
+
+        /* Adjust input font size for smaller screens */
+    }
+
+    .review-form button {
+        font-size: 14px;
+        /* Adjust button font size for smaller screens */
+        padding: 4px;
+        /* Adjust button padding for smaller screens */
+    }
+    label{
+        font-size: 14px;
+        /* Adjust label font size for smaller screens */
+    }
+    input{
+        font-size: 14px;
+        margin:0;
+        padding:0;
+        /* Adjust input font size for smaller screens */
+    }
+
+    .prev-btn,
+    .next-btn {
+        font-size: 14px;
+        /* Smaller buttons for mobile */
+        padding: 5px;
+        /* Smaller padding for buttons */
+    }
+
+    .prev-btn {
+        left: 5px;
+        /* Adjust position for smaller screens */
+    }
+
+    .next-btn {
+        right: 5px;
+        /* Adjust position for smaller screens */
+    }
+
+    .review-item p {
+        font-size: 14px;
+        /* Smaller font size for paragraphs */
+    }
+
+    .review-item a {
+        font-size: 14px;
+        /* Smaller font size for links */
+    }
+
+}
+@media (max-width: 390px) {
+    .review {
+        width: 100%;
+        height: auto;
+        padding:0;
+        margin: 0;
+        /* Auto height to fit content */
+        flex-direction: column;
+        /* Stack items vertically */
+        align-items:center;
+        /* Center items horizontally */
+        overflow: visible;
+        display: flex;
+        /* Use flexbox for layout */
+
+
+    }
+
+    .reviews-container {
+        width: 100%;
+        /* Full width for smaller screens */
+        height: auto;
+        flex-direction: column;
+        /* Stack items vertically */
+        align-items: center;
+        /* Center items horizontally */
+        padding: 10px;
+        /* Adjust padding for smaller screens */
+    }
+
+    .client-item-container {
+        width: 100%;
+        /* Full width for smaller screens */
+        height: auto;
+        /* Auto height to fit content */
+        margin: 0;
+        padding:0;
+        /* Adjust margin for better spacing */
+    }
+
+    .review-item {
+        width: 100%;
+        /* Full width for smaller screens */
+        height: auto;
+        /* Auto height to fit content */
+        flex-direction: column;
+        /* Stack items vertically */
+        align-items: center;
+        /* Center items horizontally */
+    }
+    .review-form{
+        width: 100%;
+        height: 100px;
+        /* Full width for smaller screens */
+        padding: 3px;
+        /* Adjust padding for smaller screens */
+    }
+
+    .client-profile {
+        width: 80px;
+        /* Smaller width for profile image */
+        height: 80px;
+        /* Smaller height for profile image */
+    }
+
+    .review-content {
+        text-align: center;
+        /* Center align text for smaller screens */
+    }
+
+    .review-form {
+        width: 100%;
+        height: 290px;
+
+    }
+}
+
+.footer {
+    width: 100%;
+    height: 150px;
+    background-color: #ED8171;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    margin-top: 10px;
+  
+}
+
+.footer p {
+    margin: 5px 0;
+    color: black;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.footer a {
+    font-size: 20px;
+    color: black;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #04529D;
+}
+
+.footer a:active {
+    color: #f8f8f8;
+}
+
+.footer a:visited {
+    color: #f8f8f8;
+}
+
+.footer a:focus {
+    color: #f8f8f8;
+}
+
+@media (max-width: 360px) {
+    .footer {
+        width:100%;
+        /* Full width for smaller screens */    
+        height: 300px;
+        /* Adjust height for smaller screens */
+        padding:20px;
+    }
+    .footer a {
+        padding:10px;
+    }
+    .footer a:hover {
+        color: #04529D;
+        /* Change color on hover */
+    }
+    .footer a:active {
+        color: #f8f8f8;
+        /* Change color on active */
+    }
+    .footer a:visited {
+        color: #f8f8f8;
+        /* Change color on visited */
+    }
+    .footer a:focus {
+        color: #f8f8f8;
+        /* Change color on focus */
+    }
+
+}
+
