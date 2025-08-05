@@ -95,38 +95,39 @@
 
 <script>
     //services section 
+//services section 
 document.addEventListener('DOMContentLoaded', () => {
   const titles = document.querySelectorAll('.service-title');
 
   titles.forEach(title => {
     title.addEventListener('click', () => {
+  
       const description = title.nextElementSibling;
 
-      // Debug: log class names before toggle
-      console.log('Before toggle:', description.className);
-
+      // Check if this description is already visible
       const isOpen = description.classList.contains('show');
+      console.log('Clicked title:', title.textContent);
+  console.log('Description:', description);
 
       // Close all descriptions
       document.querySelectorAll('.service-description').forEach(desc => {
         desc.classList.remove('show');
       });
-      // Remove underline from all titles
+
+      // Remove active class from all titles
       document.querySelectorAll('.service-title').forEach(t => {
         t.classList.remove('active');
       });
 
-      // Toggle current description
+      // If this one was not open, open it
       if (!isOpen) {
         description.classList.add('show');
         title.classList.add('active');
       }
-
-      // Debug: log class names after toggle
-      console.log('After toggle:', description.className);
     });
   });
 });
+
 </script>
 </body>
 </html>
