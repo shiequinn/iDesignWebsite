@@ -1,5 +1,5 @@
 https://shiequinn.github.io/iDesignWebsite/
 
-heroku 
-https://git.heroku.com/idesignwebsite.git
+heroku-database with JAWSDB /SQL
+
 
