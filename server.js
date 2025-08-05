@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { Pool } from 'pg';
+import mysql from 'mysql';
 import { hash, compare } from 'bcryptjs';
 import session from 'express-session';
 import dotenv from 'dotenv';
@@ -16,11 +17,32 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PORT = 3000;
 const app = express();
 
-// Set up database connection
-const db = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: false, // disable SSL for local development
+
+// Set up MySQL connection
+// Using JawsDB MySQL for Heroku deployment
+const connection = mysql.createConnection(process.env.JAWSDb_URL);
+
+connection.connect((err) => {
+  if (err) {
+    console.error('Error connecting to MySQL:', err);
+    return;
+  }
+  console.log('Connected to JawsDB MySQL.');
 });
+connection.connect((err) => {
+  if (err) {
+    console.error('Error connecting to MySQL:', err);
+    return;
+  }
+  console.log('Connected to MySQL database.');
+});
+//using portgresSQL
+//const db = connection; // Use db for queries
+// Set up database connection
+//const db = new Pool({
+//  connectionString: process.env.DATABASE_URL,
+//  ssl: false, // disable SSL for local development
+//});
 
 // Async startup to connect to DB and start server
 (async () => {
