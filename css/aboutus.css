@@ -1,0 +1,623 @@
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box; 
+    font-family: "Montserrat", sans-serif;
+    
+    
+    
+}
+html{
+    color: #333;
+    overflow-x: hidden;
+    width: 100%;
+    height: 100%;
+}
+/* Define the animation for background color */
+@keyframes colorChange {
+  0% {
+    background-color: #ff7f50; /* Starting color (Coral) */
+  }
+  25% {
+    background-color: #6a5acd; /* Slate Blue */
+  }
+  50% {
+    background-color: #20b2aa; /* Light Sea Green */
+  }
+  75% {
+    background-color: #ff69b4; /* Hot Pink */
+  }
+  100% {
+    background-color: #ff7f50; /* Back to Coral */
+  }
+}
+/* Style the body to animate background */
+body {
+  margin: 0; /* Remove default margin */
+  animation: colorChange 10s infinite ease-in-out;
+}
+@media (min-width: 1200px) {
+  body {
+    font-size: 18px;
+  }
+}
+/* Small desktops / landscape tablets */
+@media (min-width: 1024px) {
+  body {
+    font-size: 16px;
+     overflow-x: hidden;
+        margin: 0;
+  }
+}
+/* for tablet devices*/
+@media (max-width: 840px) {
+    body {
+        font-size: 16px;
+        overflow-x: hidden;
+        margin: 0;
+    }
+
+}
+/* Extra large phones */
+@media (max-width: 768px) {
+    body {
+        font-size: 15px;
+        /* Adjust for larger phones */
+        overflow-x: hidden;
+        margin: 0;
+    }
+}
+/* Large phones */
+@media (max-width: 460px) {
+    body {
+        font-size: 15px;
+        /* Default font size */
+        overflow-x: hidden;
+        margin: 0;
+    }
+}
+/* Medium phones */
+@media (max-width: 380px) {
+    body {
+        font-size: 14px;
+        /* Slightly larger font for better readability */
+        overflow-x: hidden;
+        margin: 0;
+
+    }
+}
+/* Medium phones */
+@media (max-width: 320px) {
+    body {
+        font-size: 14px;
+        /* Slightly larger font for better readability */
+        overflow-x: hidden;
+        margin: 0;
+
+    }
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-family: "Montserrat", sans-serif;
+    color: #333;
+    font-weight: 600;
+    text-align: center;
+}
+
+
+/*about us section*/
+.backToHomeLink {
+   width:150px;
+    height: 50px;
+    font-size: 16px;
+    color: #333;
+    text-decoration: none;
+    background-color: #333;
+    border-radius: 5px;
+    padding: 10px;
+    color: #f8f8f8;
+    transition: background-color 0.3s ease;
+
+}
+
+.backToHomeLink:hover {
+  background-color:#ED8171;
+    color: #f8f8f8;
+}
+
+.about-us-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 20px auto;
+    /* Center the container */
+}
+
+.about-us-header {
+    width: 100%;
+    height: 200px;
+    font-size: 24px;
+    /* Heading size */
+    text-align: center;
+    margin-bottom: 20px;
+    color: #eae3e3;
+    /* Heading color */
+    font-weight: 600;
+    /* Heading weight */
+    letter-spacing: 1px;
+    /* Letter spacing for readability */
+    line-height: 1.5;
+    /* Line height for readability */
+    padding: 0 20px;
+    /* Inner spacing */
+    margin-top: 20px;
+    /* Space above heading */
+    margin-bottom: 20px;
+    /* Space below heading */
+}
+
+.about-us-header h1,
+.about-us-header p {
+    margin: 20px 10px;
+    padding: 20px;
+
+
+}
+
+.about-us-content,
+.our-goal,
+.our-vision,
+.our-mission {
+    max-width: 1200px;
+    /* Container max width */
+    width: 500px;
+    margin: 20px auto;
+    /* Center the container */
+    flex-direction: column;
+    /* Column layout */
+    align-items: center;
+    /* Center items */
+    justify-content: center;
+    /* Center items */
+    text-align: center;
+    /* Center text */
+    padding: 20px;
+    background: beige;
+    /* Background for each section */
+    border-radius: 8px;
+    /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for depth */
+}
+
+/* Image styling */
+.about-us-content img,
+.our-goal img,
+.our-vision img,
+.our-mission img {
+    width: 100%;
+    /* Make images responsive */
+    max-width: 350px;
+    /* Maximum width for images */
+    height: 300px;
+    /* Maintain aspect ratio */
+    border-radius: 4px;
+    /* Slightly rounded corners */
+    cursor: pointer;
+    /* Pointer cursor on hover */
+    transition: transform 0.2s;
+    /* Smooth transition for hover effect */
+}
+
+/* Hover effect for images */
+.about-us-content img:hover,
+.our-goal img:hover,
+.our-vision img:hover,
+.our-mission img:hover {
+    transform: scale(1.05);
+    /* Slightly enlarge the image on hover */
+}
+
+/* Hidden class for text content */
+.hidden {
+    display: none;
+    /* Hide elements with this class */
+}
+
+/* Show class for text content */
+.show {
+    display: block;
+    /* Show elements with this class */
+}
+
+
+/* Text container styling */
+.about-us-content h3,
+.our-goal h3,
+.our-vision h3,
+.our-mission h3 {
+    margin: 10px auto;
+    /* Spacing above and below headings */
+    color: #0e5032;
+    /* Color for headings */
+}
+
+.about-us-content p,
+.our-goal p,
+.our-vision p,
+.our-mission p {
+    margin: 10px 0;
+    /* Spacing for paragraphs */
+
+}
+
+@keyframes slideFromLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideFromRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.slide-left {
+    animation: slideFromLeft 1s forwards;
+    opacity: 0;
+    /* Start hidden, fade in as it slides */
+}
+
+.slide-right {
+    animation: slideFromRight 1s forwards;
+    opacity: 0;
+    /* Start hidden, fade in as it slides */
+
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1024px){
+
+    .about-us-container {
+        flex-direction: row;
+        align-items: center;
+        /* Center items horizontally */
+        padding: 10px;
+        /* Adjust padding for smaller screens */
+        gap:20px;
+    }
+
+    .about-us-content,
+    .our-goal,
+    .our-vision,
+    .our-mission {
+        width: 100%;
+        /* Full width for smaller screens */
+        margin: 10px auto;
+        /* Center the sections */
+        padding: 15px;
+    }
+
+    img {
+        width: 100%;
+        /* Make images responsive */
+        height: auto;
+        /* Maintain aspect ratio */
+        margin: 20px;
+    }
+    .about-us-header{
+        width: 100%;
+        height: auto;
+        /* Auto height to fit content */
+        padding: 10px;
+        /* Adjust padding for smaller screens */
+        margin-top: 20px;
+    }
+}
+
+
+@media (max-width: 840px){
+    .about-us-container {
+        width: 100%;
+        /* Full width for smaller screens */
+        height: auto;
+        flex-direction: column;
+        /* Stack items vertically */
+        align-items: center;
+        /* Center items horizontally */
+        padding: 10px;
+        /* Adjust padding for smaller screens */
+    }
+
+    .about-us-content,
+    .our-goal,
+    .our-vision,
+    .our-mission {
+        width: 100%;
+        /* Full width for smaller screens */
+        margin: 10px auto;
+        /* Center the sections */
+        padding: 15px;
+    }
+
+    img {
+        width: 100%;
+        /* Make images responsive */
+        height: auto;
+        /* Maintain aspect ratio */
+        padding:10px;
+        margin: 0;
+    }
+
+}
+@media(max-width: 540px){
+    .about-us-container {
+        width: 100%;
+        grid-template-columns: 1fr;
+        /* Full width for smaller screens */
+        height: auto;
+        align-items: center;
+        justify-content: center;
+        /* Center items horizontally */
+        padding: 10px;
+        /* Adjust padding for smaller screens */
+    }
+
+    img {
+        width: 100%;
+        /* Make images responsive */
+        height: auto;
+        /* Maintain aspect ratio */
+        margin: 0;
+        padding: 20px;
+    }
+
+    .about-us-content,
+    .our-goal,
+    .our-vision,
+    .our-mission {
+        width: 100%;
+        /* Full width for smaller screens */
+        margin: 10px auto;
+        /* Center the sections */
+    }
+}
+@media (max-width: 768px) {
+    .about-us-container {
+        width: 100%;
+        grid-template-columns: 2fr 1fr;
+        /* Full width for smaller screens */
+        height: auto;
+        align-items: center;
+        justify-content: center;
+        /* Center items horizontally */
+        gap:20px;
+     
+
+    }
+    /* Adjust the layout for smaller screens */
+    img {
+        width:100%;
+        /* Make images wider on smaller screens */
+        height: auto;
+        margin: 0;
+        padding: 20px;
+    }
+
+    /* Adjust margin and padding for mobile */
+    .about-us-content,
+    .our-goal,
+    .our-vision,
+    .our-mission {
+        width:100%;
+        margin: 10px auto;
+        /* Center the sections */
+
+   
+    }
+}
+@media (max-width: 460px) {
+    .about-us-container{
+        width:100%;
+        grid-template-columns: 1fr;
+        padding:20px;
+        margin:10px auto;
+        align-items: center;
+        justify-content: center;
+    }
+    .about-us-content,
+    .our-goal,
+    .our-vision,
+    .our-mission {
+        width: 100%;
+        /* Full width for smaller screens */
+        margin: 10px auto;
+        /* Adjust padding for smaller screens */
+    }
+
+    .about-us-header {
+        font-size: 20px;
+        /* Smaller font size for headings */
+        padding: 0;
+        /* Adjust padding for smaller screens */
+    }
+
+    .about-us-header h1,
+    .about-us-header p {
+        margin: 0;
+        /* Adjust margin for better spacing */
+    }
+
+    .about-us-content h3,
+    .our-goal h3,
+    .our-vision h3,
+    .our-mission h3 {
+        font-size: 18px;
+        /* Smaller font size for headings */
+        padding:10px;
+    }
+
+    .about-us-content p,
+    .our-goal p,
+    .our-vision p,
+    .our-mission p {
+        font-size: 16px;
+        /* Smaller font size for paragraphs */
+    }
+    img {
+        width: 100%;
+        /* Make images responsive */
+        height: auto;
+        /* Maintain aspect ratio */
+        margin: 0;
+        padding: 20px;
+    }
+}
+@media (max-width: 380px) {
+    .about-us{
+        width: 100%;
+        height: auto;
+        padding:0;
+        margin: 10px;
+        /* Auto height to fit content */
+        flex-direction: column;
+        /* Stack items vertically */
+        align-items: center;
+        /* Center items horizontally */
+        overflow: visible;
+        display: flex;
+        /* Use flexbox for layout */
+
+    }
+     .about-us-header {
+        width: 100%;
+        height: auto;
+        padding: 0;
+        /* Adjust padding for smaller screens */
+    }
+     .about-us-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        width:100%;
+        height: auto;
+        margin: 0;
+        padding:10px;
+
+    }
+    .about-us-content,
+    .our-goal,
+    .our-vision,
+    .our-mission {
+        width: 100%;
+        /* Full width for smaller screens */
+    }
+.about-us-content img,
+.our-goal img,  
+.our-vision img,
+.our-mission img {
+        width: 100%;
+        /* Make images responsive */
+        height: auto;
+        /* Maintain aspect ratio */
+        margin: 0;
+        padding: 20px;
+    }
+}
+.footer {
+    width: 100%;
+    height: 150px;
+    background-color: #ED8171;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+  
+}
+
+.footer p {
+    margin: 5px 0;
+    color: black;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.footer a {
+    font-size: 20px;
+    color: black;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #04529D;
+}
+
+.footer a:active {
+    color: #f8f8f8;
+}
+
+.footer a:visited {
+    color: #f8f8f8;
+}
+
+.footer a:focus {
+    color: #f8f8f8;
+}
+
+@media (max-width: 360px) {
+    .footer {
+        width:100%;
+        /* Full width for smaller screens */    
+        height: 300px;
+        /* Adjust height for smaller screens */
+        padding:0;
+        margin:0;
+    }
+
+    .footer p {
+        font-size: 12px;
+        /* Smaller font size for paragraphs */
+    }
+
+    .footer a {
+        font-size: 16px;
+        /* Smaller font size for links */
+        padding:10px;
+    }
+    .footer a:hover {
+        color: #04529D;
+        /* Change color on hover */
+    }
+    .footer a:active {
+        color: #f8f8f8;
+        /* Change color on active */
+    }
+    .footer a:visited {
+        color: #f8f8f8;
+        /* Change color on visited */
+    }
+    .footer a:focus {
+        color: #f8f8f8;
+        /* Change color on focus */
+    }
+
+}
