@@ -83,6 +83,7 @@ app.post('/register', async (req, res) => {
     const [results] = await connection.execute('SELECT * FROM users WHERE email = ?', [email]);
     if (results.length > 0) {
       connection.release();
+      res.setHeader('Content-Type', 'application/json');
       return res.status(400).json({ message: 'Email already registered' });
     }
 
@@ -94,13 +95,14 @@ app.post('/register', async (req, res) => {
     );
 
     connection.release();
+    res.setHeader('Content-Type', 'application/json');
     res.json({ message: 'Registration successful' });
   } catch (err) {
     console.error('Error during registration:', err);
+    res.setHeader('Content-Type', 'application/json');
     res.status(500).json({ message: 'An error occurred during registration', error: err.message });
   }
 });
-
 // Login route
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
@@ -128,18 +130,21 @@ app.post('/login', async (req, res) => {
   }
 });
 
-// Middleware: authenticate token
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
+  console.log('Auth header:', authHeader);
+  console.log('Token:', token);
   if (!token) return res.status(401).json({ message: 'Access token required' });
   jwt.verify(token, jwtSecret, (err, user) => {
-    if (err) return res.status(403).json({ message: 'Invalid token' });
+    if (err) {
+      console.error('JWT verify error:', err);
+      return res.status(403).json({ message: 'Invalid token' });
+    }
     req.user = user;
     next();
   });
 }
-
 // Add review (protected)
 app.post('/add-review', authenticateToken, async (req, res) => {
   const { name, position, review } = req.body;

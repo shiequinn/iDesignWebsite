@@ -108,31 +108,42 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
   const herokuServerUrl = 'https://idesignwebsite-905e545d981b.herokuapp.com/register';
 
   try {
-    const response = await fetch(herokuServerUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        password,
-        bio,
-        membership_level: membershipLevel
-      })
-    });
-    const result = await response.json();
+  const response = await fetch(herokuServerUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name,
+      email,
+      password,
+      bio,
+      membership_level: membershipLevel
+    })
+  });
 
-    if (response.ok) {
-      alert('Registration successful!');
-      window.location.href = 'index.login.html'; // or your login page
-    } else {
-      alert('Error: ' + result.message);
-    }
-  } catch (error) {
-    console.error('Error:', error);
-    alert('An error occurred during registration.');
+  // Check if response is JSON
+  const contentType = response.headers.get('content-type');
+  let result;
+
+  if (contentType && contentType.includes('application/json')) {
+    result = await response.json();
+  } else {
+    // Response is not JSON, handle accordingly
+    const text = await response.text();
+    throw new Error(`Unexpected response: ${text}`);
   }
+
+  if (response.ok) {
+    alert('Registration successful!');
+    window.location.href = 'index.login.html'; // or your login page
+  } else {
+    alert('Error: ' + result.message);
+  }
+} catch (error) {
+  console.error('Error:', error);
+  alert('An error occurred during registration.');
+}
 });
 </script>
 </body>
