@@ -5,7 +5,7 @@ dotenv.config();
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import cors from 'cors';
-import mysql from 'mysql2/promise'; // Use promise-based mysql2
+import mysql from 'mysql2/promise';
 import { hash, compare } from 'bcryptjs';
 import session from 'express-session';
 import path from 'path';
