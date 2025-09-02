@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
   const reviewSlider = document.querySelector('.review-slider');
+  const API_BASE_URL = 'https://idesignwebsite-905e545d981b.herokuapp.com/';
 
   let currentIndex = 0;
   let totalReviews = reviewItems.length;
@@ -124,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const reviewText = document.getElementById('clientReview').value;
 
     try {
-      const response = await fetch('/add-review', {
+      const response = await fetch(`${API_BASE_URL}/add-review`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, position, review: reviewText }),
@@ -166,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Function to load reviews dynamically
   async function loadReviews() {
     try {
-      const response = await fetch('/get-reviews');
+      const response = await fetch(`${API_BASE_URL}/get-reviews`);
       const reviews = await response.json();
 
       // Clear existing reviews

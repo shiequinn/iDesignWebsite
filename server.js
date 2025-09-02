@@ -74,7 +74,7 @@ async function getConnectionAsync() {
 // Routes
 
 // Home route
-app.get('/', (req, res) => res.send('Hello'));
+app.get('/', (req, res) => res.send('Hello World'));
 
 // Register route
 app.post('/register', async (req, res) => {
