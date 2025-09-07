@@ -2,8 +2,9 @@ import express from 'express';
 import mysql from 'mysql2/promise'; // import mysql2
 import bcrypt from 'bcryptjs';       // import bcryptjs
 import jwt from 'jsonwebtoken';      // import jsonwebtoken
+import { Router } from 'express';
 
-const router = express.Router();
+const router = Router();
 app.use('/api', router);
 
 // Connect to MySQL using mysql2 with promises
