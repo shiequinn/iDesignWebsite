@@ -4,6 +4,7 @@ import bcrypt from 'bcryptjs';       // import bcryptjs
 import jwt from 'jsonwebtoken';      // import jsonwebtoken
 
 const router = express.Router();
+app.use('/api', router);
 
 // Connect to MySQL using mysql2 with promises
 const pool = mysql.createPool({
@@ -23,6 +24,9 @@ async function getConnectionAsync() {
 
 // Register route
 router.post('/register', async (req, res) => {
+  // Set CORS header
+  res.setHeader('Access-Control-Allow-Origin', 'https://shiequinn.com');
+
   const { name, email, password, bio, membership_level } = req.body;
   try {
     const connection = await getConnectionAsync();
@@ -48,7 +52,6 @@ router.post('/register', async (req, res) => {
     res.status(500).json({ message: 'Error during registration', error: err.message });
   }
 });
-
 // Login route
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
