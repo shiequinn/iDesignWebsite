@@ -557,14 +557,17 @@ Video {
         /* Adjust height for smaller screens */
     }
 
-    .intro-slide {
-        width: 60%;
+    .intro-slideIn {
+        width: 80%;
         /* Adjust width for smaller screens */
         height: 100%;
         left: 0;
         /* Center the slide */
-        transform: translateY(-50%);
-        animation: slideLeftRight 10s ease-in-out forwards;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    /* Animate only to slide in, then stay */
+    animation: slideIn 2s forwards;
+
+
     }
 
     /* Adjust the text size for smaller screens */
@@ -587,7 +590,7 @@ Video {
 
     }
     .intro-image {
-        max-width: 250px;
+        max-width: 100%;
         /* Smaller max width for images */
         height: 150px;
         /* Maintain aspect ratio */
@@ -600,14 +603,17 @@ Video {
         /* Adjust height for smaller screens */
     }
 
-    .intro-slide {
-        width: 80%;
+    .intro-slideIn{
+        width: 90%;
         /* Adjust width for smaller screens */
         height: 100%;
         left: 0;
         /* Center the slide */
-        transform: translateY(-50%);
-        animation: slideLeftRight 10s ease-in-out forwards;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    /* Animate only to slide in, then stay */
+    animation: slideIn 2s forwards;
+
+
     }
 
     /* Adjust the text size for smaller screens */
@@ -627,6 +633,12 @@ Video {
 @media (max-width: 360px) {
     .intro {
         height: 560px;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding:10px;
+        display: flex;
+    
         /* Adjust height for smaller screens */
     }
 
@@ -636,8 +648,11 @@ Video {
         height: 100%;
         left: 0;
         /* Center the slide */
-        transform: translateY(-50%);
-        animation: slideLeftRight 10s ease-in-out forwards;
+
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    /* Animate only to slide in, then stay */
+    animation: slideIn 2s forwards;
+
     }
 
     /* Adjust the text size for smaller screens */
@@ -662,7 +677,7 @@ Video {
     }
 
     .intro-image {
-        max-width: 200px;
+        max-width: 100%;
         /* Smaller max width for images */
         height: 100px;
         /* Maintain aspect ratio */
