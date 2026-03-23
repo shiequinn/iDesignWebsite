@@ -560,7 +560,7 @@ Video {
 @media (max-width: 768px) {
     .intro {
          width: 100%;
-        height: 500px;
+        height: 650px;
         /* Adjust height for smaller screens */
     }
 
@@ -639,7 +639,8 @@ Video {
 /* Show on screens <= 360px */
 @media (max-width: 360px) {
     .intro {
-        height: 560px;
+        width: 100%;
+        height: 650px;
         justify-content: center;
         align-items: center;
         text-align: center;
@@ -686,7 +687,7 @@ Video {
     .intro-image {
         max-width: 100%;
         /* Smaller max width for images */
-        height: 100px;
+        height: 150px;
         /* Maintain aspect ratio */
     }
 }
