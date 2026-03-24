@@ -1,4 +1,5 @@
-https://shiequinn.github.io/iDesignWebsite/
+
+actual doamin: https://shiequinn.com/
 
 heroku-database with JAWSDB /SQL
 
