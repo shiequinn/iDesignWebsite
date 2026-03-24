@@ -4,24 +4,36 @@ dotenv.config();
 
 import express from 'express';
 import cors from 'cors';
+import pool from './db.js';
 import session from 'express-session';
-import mysql from 'mysql2/promise';
 import routes from './routes.js'; // your routes file
 
-// Define __dirname for ES modules
+// Setup __dirname for ES modules
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-
-const app = express();
-const jwtSecret = process.env.JWT_SECRET || 'default-secret';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+const app = express();
+
+// Your middleware here (e.g., app.use(express.json()))
+
+// Define your routes here
+app.get('/reviews', async (req, res) => {
+  try {
+    const [rows] = await pool.query('SELECT * FROM reviews');
+    res.json(rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Database query failed' });
+  }
+});
+
+
 // Middleware setup
 app.use(express.static('public'));
 app.use(express.json());
-app.use('/api', routes); // Mount your routes here
 
 // CORS setup
 const allowedOrigins = [
@@ -42,7 +54,7 @@ app.use(cors({
   optionsSuccessStatus: 200,
 }));
 
-// Handle preflight
+// Handle preflight options request
 app.options('*', cors);
 
 // Session setup
@@ -53,17 +65,23 @@ app.use(session({
   cookie: { secure: false }
 }));
 
-// Database connection pool
-const pool = mysql.createPool({
-  host: 'd1kb8x1fu8rhcnej.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
-  user: 'a9a1kyqcj8r1g7kf',
-  password: 'kapd7rxwuzbqcmlq',
-  database: 'xbxm73r0k93viqkl',
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0
+// Use your imported routes (assuming routes() returns a router)
+const mainRouter = routes(); // or directly use 'routes' if it's a router
+
+// Mount the main router at /api
+app.use('/api', mainRouter);
+
+// Example of defining a specific route for reviews if needed
+// or if reviews are part of your routes, handle them inside routes.js
+// For demonstration:
+const reviewsRouter = express.Router();
+
+reviewsRouter.get('/', (req, res) => {
+  res.send('Get all reviews');
 });
 
+// Mount reviews router separately if needed
+app.use('/reviews', reviewsRouter);
 
 // Basic route
 app.get('/', (req, res) => res.send('Hello World'));
