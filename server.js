@@ -2,11 +2,16 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
+console.log('Loaded env variables:');
+console.log('DATABASE_URL:', process.env.DATABASE_URL);
+console.log('SECRET_KEY:', process.env.SECRET_KEY);
+console.log('PORT:', process.env.PORT);
+
 import express from 'express';
 import cors from 'cors';
-import pool from './db.js';
 import session from 'express-session';
-import routes from './routes.js'; // your routes file
+import pool from './db.js'; 
+import routes from './routes.js'; // Your routes file
 
 // Setup __dirname for ES modules
 import { fileURLToPath } from 'url';
@@ -16,20 +21,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
-
-// Your middleware here (e.g., app.use(express.json()))
-
-// Define your routes here
-app.get('/reviews', async (req, res) => {
-  try {
-    const [rows] = await pool.query('SELECT * FROM reviews');
-    res.json(rows);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Database query failed' });
-  }
-});
-
 
 // Middleware setup
 app.use(express.static('public'));
@@ -62,28 +53,17 @@ app.use(session({
   secret: process.env.SECRET_KEY || 'defaultsecret',
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: false }
+  cookie: {
+    secure: false, // true if HTTPS
+    httpOnly: true,
+    sameSite: 'lax'
+  }
 }));
 
-// Use your imported routes (assuming routes() returns a router)
-const mainRouter = routes(); // or directly use 'routes' if it's a router
+// Use your imported routes (including reviews)
+app.use('/api', routes); // Assuming routes is a router with all routes
 
-// Mount the main router at /api
-app.use('/api', mainRouter);
-
-// Example of defining a specific route for reviews if needed
-// or if reviews are part of your routes, handle them inside routes.js
-// For demonstration:
-const reviewsRouter = express.Router();
-
-reviewsRouter.get('/', (req, res) => {
-  res.send('Get all reviews');
-});
-
-// Mount reviews router separately if needed
-app.use('/reviews', reviewsRouter);
-
-// Basic route
+// Optional: define root route
 app.get('/', (req, res) => res.send('Hello World'));
 
 // Start server

@@ -1,12 +1,28 @@
+import express from 'express';
+import dotenv from 'dotenv';
 
+// Load environment variables
+dotenv.config();
 
-function App() {
-  return (
-    <div>
-      <h1>Hello React!</h1>
-      {/* your components */}
-    </div>
-  );
-}
+const app = express();
+const port = process.env.PORT || 3000;
 
-export default App;
+// Middleware to parse JSON request bodies
+app.use(express.json());
+
+// Optional: serve static files from 'public' folder
+app.use(express.static('public'));
+
+// Root route
+app.get('/', (req, res) => {
+  res.send('Hello from the server!');
+});
+
+// Example: use your routes (if you have routes.js)
+import routes from './routes.js'; // Import your routes
+app.use('/api', routes); // Mount at /api
+
+// Start server
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
