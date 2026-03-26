@@ -33,6 +33,10 @@ router.post('/reviews', authenticateToken, async (req, res) => {
     return res.status(400).json({ message: 'Please provide name, position, and review' });
   }
 
+  // Sanitize inputs
+  const sanitizedName = String(name).trim();
+  const sanitizedPosition = String(position).trim();
+  const sanitizedReview = String(review).trim();
   const created_at = new Date();
 
   let connection;
@@ -40,7 +44,7 @@ router.post('/reviews', authenticateToken, async (req, res) => {
     connection = await pool.getConnection();
     await connection.execute(
       'INSERT INTO reviews (name, position, review, created_at) VALUES (?, ?, ?, ?)',
-      [name, position, review, created_at]
+      [sanitizedName, sanitizedPosition, sanitizedReview, created_at]
     );
     res.json({ message: 'Review added successfully!' });
   } catch (err) {
@@ -62,4 +66,5 @@ router.get('/reviews', async (req, res) => {
   }
 });
 
+console.log('Loading routes.js');
 export default router;
