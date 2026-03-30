@@ -119,3 +119,36 @@ document.addEventListener('DOMContentLoaded', () => {
   // Load initial reviews
   loadReviews();
 });
+
+//services section 
+document.addEventListener('DOMContentLoaded', () => {
+  const titles = document.querySelectorAll('.service-title');
+
+  titles.forEach(title => {
+    title.addEventListener('click', () => {
+  
+      const description = title.nextElementSibling;
+
+      // Check if this description is already visible
+      const isOpen = description.classList.contains('show');
+      console.log('Clicked title:', title.textContent);
+  console.log('Description:', description);
+
+      // Close all descriptions
+      document.querySelectorAll('.service-description').forEach(desc => {
+        desc.classList.remove('show');
+      });
+
+      // Remove active class from all titles
+      document.querySelectorAll('.service-title').forEach(t => {
+        t.classList.remove('active');
+      });
+
+      // If this one was not open, open it
+      if (!isOpen) {
+        description.classList.add('show');
+        title.classList.add('active');
+      }
+    });
+  });
+});
