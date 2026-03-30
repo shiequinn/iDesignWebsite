@@ -13,6 +13,7 @@ import session from 'express-session';
 import pool from './db.js'; 
 import routes from './routes.js'; // Your routes file
 
+
 // Setup __dirname for ES modules
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -21,6 +22,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
+app.use(cors());
 
 // Middleware setup
 app.use(express.static('public'));
@@ -44,9 +46,6 @@ app.use(cors({
   },
   optionsSuccessStatus: 200,
 }));
-
-// Handle preflight options request
-app.options('*', cors);
 
 // Session setup
 app.use(session({
