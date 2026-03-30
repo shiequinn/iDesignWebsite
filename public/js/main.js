@@ -1,5 +1,5 @@
 // Define API base URL
-const API_BASE_URL = 'https://idesignwebsite-905e545d981b.herokuapp.com';
+const API_BASE_URL = 'https://idesignwebsite-905e545d981b.herokuapp.com/api/reviews';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Select elements
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Submitting review:', payload);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/reviews`, {
+      const response = await fetch(`${API_BASE_URL}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
