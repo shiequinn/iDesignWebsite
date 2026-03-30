@@ -49,38 +49,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Load reviews from server
   async function loadReviews() {
-    try {
-      const response = await fetch(`${API_BASE_URL}/api/reviews`);
-      if (!response.ok) throw new Error(`Network response was not ok: ${response.status}`);
+  try {
+    const response = await fetch(`${API_BASE_URL}`);
+    if (!response.ok) throw new Error(`Network response was not ok: ${response.status}`);
 
-      const contentType = response.headers.get('content-type');
-      if (!contentType || !contentType.includes('application/json')) {
-        throw new Error(`Expected JSON response, but received: ${contentType}`);
-      }
+    const contentType = response.headers.get('content-type');
+    if (!contentType || !contentType.includes('application/json')) {
+      throw new Error(`Expected JSON response, but received: ${contentType}`);
+    }
 
-      const reviews = await response.json();
-      reviewWrapper.innerHTML = '';
+    const reviews = await response.json();
+    const reviewWrapper = document.getElementById('reviewWrapper');
 
-      reviews.forEach(review => {
-        const reviewDiv = document.createElement('div');
-        reviewDiv.className = 'review-item';
-        reviewDiv.innerHTML = `
+    reviewWrapper.innerHTML = ''; // Clear existing reviews
+
+    reviews.forEach(review => {
+      const reviewDiv = document.createElement('div');
+      reviewDiv.className = 'swiper-slide'; // Swiper slide class
+      reviewDiv.innerHTML = `
+        <div class="review-item">
           <div class="review-content">
             <p class="client-name">${review.name}</p>
             <p class="client-position">${review.position}</p>
             <p class="client-review">"${review.review}"</p>
           </div>
-        `;
-        reviewWrapper.appendChild(reviewDiv);
-      });
+        </div>
+      `;
+      reviewWrapper.appendChild(reviewDiv);
+    });
 
-      // If you have a slider, initialize it here
-      // initializeSlider();
-    } catch (err) {
-      console.error('Failed to load reviews:', err);
-    }
+    // Initialize Swiper
+    initializeSwiper();
+  } catch (err) {
+    console.error('Failed to load reviews:', err);
   }
+}
 
+let mySwiper;
+function initializeSwiper() {
+  if (mySwiper) {
+    mySwiper.destroy(true, true);
+  }
+  mySwiper = new Swiper('#reviewSwiper', {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    navigation: {
+      nextEl: '#nextBtn',
+      prevEl: '#prevBtn',
+    },
+    loop: true,
+  });
+}
   // Star rating interactivity
   const stars = document.querySelectorAll('.star-rating .star');
   const ratingInput = document.getElementById('ratingInput');
