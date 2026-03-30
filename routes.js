@@ -4,6 +4,8 @@ import { Router } from 'express';
 
 const router = Router();
 
+console.log('Loading routes.js');
+
 // Middleware for token verification
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization'];
@@ -25,15 +27,13 @@ function authenticateToken(req, res, next) {
 }
 
 // Add review (protected route)
-router.post('/reviews', authenticateToken, async (req, res) => {
+router.post('/api/reviews', authenticateToken, async (req, res) => {
   const { name, position, review } = req.body;
 
-  // Basic validation
   if (!name || !position || !review) {
     return res.status(400).json({ message: 'Please provide name, position, and review' });
   }
 
-  // Sanitize inputs
   const sanitizedName = String(name).trim();
   const sanitizedPosition = String(position).trim();
   const sanitizedReview = String(review).trim();
@@ -56,7 +56,7 @@ router.post('/reviews', authenticateToken, async (req, res) => {
 });
 
 // Get all reviews
-router.get('/reviews', async (req, res) => {
+router.get('/api/reviews', async (req, res) => {
   try {
     const [results] = await pool.query('SELECT * FROM reviews');
     res.json(results);
@@ -66,5 +66,4 @@ router.get('/reviews', async (req, res) => {
   }
 });
 
-console.log('Loading routes.js');
 export default router;

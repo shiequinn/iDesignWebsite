@@ -1562,6 +1562,15 @@ Video {
 
 
 }
+.star {
+  cursor: pointer;
+  font-size: 24px;
+  color: #ccc; /* default color */
+}
+.star.hover,
+.star.selected {
+  color: #ffcc00; /* highlighted color */
+}
 
 /* Style for the content wrapper that will slide */
 #reviewWrapper {
@@ -1884,6 +1893,12 @@ Video {
         margin: 0;
         padding:0;
         /* Adjust margin for better spacing */
+    }
+    .reviews{
+        font-size: 20px;
+        /* Adjust star size for smaller screens */
+        align-items: center;
+        padding: 10px;
     }
 
     .review-item {

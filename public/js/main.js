@@ -2,7 +2,9 @@
 const API_BASE_URL = 'https://idesignwebsite-905e545d981b.herokuapp.com';
 
 document.addEventListener('DOMContentLoaded', () => {
-  // ... your existing code ...
+  // Select elements for review loading and submission
+  const reviewWrapper = document.getElementById('reviewWrapper');
+  const reviewForm = document.getElementById('clientReviewForm');
 
   // Load reviews from server
   async function loadReviews() {
@@ -28,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         reviewWrapper.appendChild(reviewDiv);
       });
 
-      // Re-initialize slider after loading
+      // Re-initialize slider after loading if needed
       initializeSlider();
     } catch (err) {
       console.error('Failed to load reviews:', err);
@@ -42,8 +44,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const name = document.getElementById('clientName').value;
     const position = document.getElementById('clientPosition').value;
     const reviewText = document.getElementById('clientReview').value;
+    const rating = document.getElementById('ratingInput')?.value || 0; // get rating value
 
-    const payload = { name, position, review: reviewText };
+    const payload = { name, position, review: reviewText, rating: parseInt(rating) };
     console.log('Submitting review:', payload);
 
     try {
@@ -57,10 +60,12 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log('API response:', result);
 
       if (response.ok) {
-        // Optionally, reload reviews after successful submission
+        // Reload reviews after successful submission
         loadReviews();
         // Reset form
         document.getElementById('clientReviewForm').reset();
+        // Reset star selection visuals
+        resetStars();
       } else {
         alert('Error: ' + result.message);
       }
@@ -70,6 +75,47 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Initial load of reviews
+  // Star rating interactivity
+  const stars = document.querySelectorAll('.star-rating .star');
+  const ratingInput = document.getElementById('ratingInput');
+  let selectedRating = 0;
+
+  // Add event listeners for hover and click
+  stars.forEach((star, index) => {
+    star.addEventListener('mouseover', () => {
+      highlightStars(index + 1);
+    });
+    star.addEventListener('mouseout', () => {
+      highlightStars(selectedRating);
+    });
+    star.addEventListener('click', () => {
+      selectedRating = index + 1;
+      highlightStars(selectedRating);
+      if (ratingInput) {
+        ratingInput.value = selectedRating; // store in hidden input
+      }
+    });
+  });
+
+  // Function to highlight stars up to given rating
+  function highlightStars(rating) {
+    stars.forEach((star, index) => {
+      if (index < rating) {
+        star.classList.add('hover');
+        star.classList.add('selected');
+      } else {
+        star.classList.remove('hover');
+        star.classList.remove('selected');
+      }
+    });
+  }
+
+  // Function to reset star visuals
+  function resetStars() {
+    selectedRating = 0;
+    highlightStars(0);
+  }
+
+  // Load initial reviews
   loadReviews();
 });
