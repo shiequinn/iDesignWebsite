@@ -20,7 +20,6 @@ app.get('/', (req, res) => {
 });
 
 // Example: use your routes (if you have routes.js)
-import routes from './routes.js'; // Import your routes
 app.use('/api', routes); // Mount at /api
 
 // Start server

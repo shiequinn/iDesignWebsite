@@ -10,7 +10,15 @@ document.addEventListener('DOMContentLoaded', () => {
   async function loadReviews() {
     try {
       const response = await fetch(`${API_BASE_URL}/api/reviews`);
-      if (!response.ok) throw new Error('Network response was not ok');
+      // Check if response is OK
+      if (!response.ok) throw new Error(`Network response was not ok: ${response.status}`);
+      
+      // Verify content type before parsing
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error(`Expected JSON response, but received: ${contentType}`);
+      }
+
       const reviews = await response.json();
 
       // Clear existing reviews
@@ -56,19 +64,27 @@ document.addEventListener('DOMContentLoaded', () => {
         body: JSON.stringify(payload),
       });
 
+      // Check if response is OK
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to submit review');
+      }
+
+      // Verify response content type
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error(`Expected JSON response, but received: ${contentType}`);
+      }
+
       const result = await response.json();
       console.log('API response:', result);
 
-      if (response.ok) {
-        // Reload reviews after successful submission
-        loadReviews();
-        // Reset form
-        document.getElementById('clientReviewForm').reset();
-        // Reset star selection visuals
-        resetStars();
-      } else {
-        alert('Error: ' + result.message);
-      }
+      // Reload reviews after successful submission
+      loadReviews();
+      // Reset form
+      document.getElementById('clientReviewForm').reset();
+      // Reset star visuals
+      resetStars();
     } catch (err) {
       console.error('Fetch error:', err);
       alert('An error occurred: ' + err.message);
@@ -80,7 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const ratingInput = document.getElementById('ratingInput');
   let selectedRating = 0;
 
-  // Add event listeners for hover and click
   stars.forEach((star, index) => {
     star.addEventListener('mouseover', () => {
       highlightStars(index + 1);
@@ -101,11 +116,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function highlightStars(rating) {
     stars.forEach((star, index) => {
       if (index < rating) {
-        star.classList.add('hover');
-        star.classList.add('selected');
+        star.classList.add('hover', 'selected');
       } else {
-        star.classList.remove('hover');
-        star.classList.remove('selected');
+        star.classList.remove('hover', 'selected');
       }
     });
   }
@@ -120,19 +133,16 @@ document.addEventListener('DOMContentLoaded', () => {
   loadReviews();
 });
 
-//services section 
+// Services section toggle
 document.addEventListener('DOMContentLoaded', () => {
   const titles = document.querySelectorAll('.service-title');
 
   titles.forEach(title => {
     title.addEventListener('click', () => {
-  
       const description = title.nextElementSibling;
 
       // Check if this description is already visible
       const isOpen = description.classList.contains('show');
-      console.log('Clicked title:', title.textContent);
-  console.log('Description:', description);
 
       // Close all descriptions
       document.querySelectorAll('.service-description').forEach(desc => {
