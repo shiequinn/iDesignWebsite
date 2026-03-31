@@ -67,13 +67,6 @@ router.get('/reviews', async (req, res) => {
     res.status(500).json({ message: 'Error fetching reviews' });
   }
 });
-app.get('/test-db', async (req, res) => {
-  try {
-    const [rows] = await pool.query('SELECT 1');
-    res.json({ success: true, rows });
-  } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
-  }
-});
+
 
 export default router;
