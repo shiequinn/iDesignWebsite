@@ -1,17 +1,16 @@
 // Define API base URL
-const API_BASE_URL = 'https://idesignwebsite-905e545d981b.herokuapp.com/api/reviews';
+const API_BASE_URL = 'https://idesignwebsite-905e545d981b.herokuapp.com/reviews'; // Update with your actual API endpoint
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Select elements
   const reviewWrapper = document.getElementById('reviewWrapper');
 
-  // Attach form submit event directly
+  // Handle review form submission
   document.getElementById('clientReviewForm')?.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const name = document.getElementById('clientName').value;
-    const position = document.getElementById('clientPosition').value;
-    const reviewText = document.getElementById('clientReview').value;
+    const name = document.getElementById('clientName').value.trim();
+    const position = document.getElementById('clientPosition').value.trim();
+    const reviewText = document.getElementById('clientReview').value.trim();
     const rating = document.getElementById('ratingInput')?.value || 0;
 
     const payload = { name, position, review: reviewText, rating: parseInt(rating) };
@@ -29,26 +28,30 @@ document.addEventListener('DOMContentLoaded', () => {
         throw new Error(errorData.message || 'Failed to submit review');
       }
 
+      // Ensure JSON response
       const contentType = response.headers.get('content-type');
       if (!contentType || !contentType.includes('application/json')) {
         throw new Error(`Expected JSON response, but received: ${contentType}`);
       }
 
       const result = await response.json();
-      console.log('API response:', result);
+      alert(result.message || 'Review submitted successfully!');
 
-      // Reload reviews after success
-      loadReviews();
+      // Reload reviews to include new one
+      await loadReviews();
+
+      // Reset form and stars
       document.getElementById('clientReviewForm').reset();
       resetStars();
+
     } catch (err) {
       console.error('Fetch error:', err);
       alert('An error occurred: ' + err.message);
     }
   });
 
-  // Load reviews from server
-  async function loadReviews() {
+  // Load reviews from server and initialize Swiper
+ async function loadReviews() {
   try {
     const response = await fetch(`${API_BASE_URL}`);
     if (!response.ok) throw new Error(`Network response was not ok: ${response.status}`);
@@ -59,47 +62,39 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const reviews = await response.json();
-    const reviewWrapper = document.getElementById('reviewWrapper');
-
-    reviewWrapper.innerHTML = ''; // Clear existing reviews
+    console.log('Fetched reviews:', reviews); // Add this line
+    reviewWrapper.innerHTML = '';
 
     reviews.forEach(review => {
-      const reviewDiv = document.createElement('div');
-      reviewDiv.className = 'swiper-slide'; // Swiper slide class
-      reviewDiv.innerHTML = `
-        <div class="review-item">
-          <div class="review-content">
-            <p class="client-name">${review.name}</p>
-            <p class="client-position">${review.position}</p>
-            <p class="client-review">"${review.review}"</p>
-          </div>
-        </div>
-      `;
-      reviewWrapper.appendChild(reviewDiv);
+      // existing code
     });
 
-    // Initialize Swiper
     initializeSwiper();
+
   } catch (err) {
     console.error('Failed to load reviews:', err);
   }
 }
 
-let mySwiper;
-function initializeSwiper() {
-  if (mySwiper) {
-    mySwiper.destroy(true, true);
+  let mySwiper;
+  function initializeSwiper() {
+    if (mySwiper) {
+      mySwiper.destroy(true, true);
+    }
+    // Make sure your container has id 'reviewSwiper' for Swiper
+    if (document.querySelector('#reviewSwiper')) {
+      mySwiper = new Swiper('#reviewSwiper', {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        navigation: {
+          nextEl: '#nextBtn',
+          prevEl: '#prevBtn',
+        },
+        loop: true,
+      });
+    }
   }
-  mySwiper = new Swiper('#reviewSwiper', {
-    slidesPerView: 1,
-    spaceBetween: 20,
-    navigation: {
-      nextEl: '#nextBtn',
-      prevEl: '#prevBtn',
-    },
-    loop: true,
-  });
-}
+
   // Star rating interactivity
   const stars = document.querySelectorAll('.star-rating .star');
   const ratingInput = document.getElementById('ratingInput');
@@ -130,10 +125,10 @@ function initializeSwiper() {
     highlightStars(0);
   }
 
-  // Load initial reviews
+  // Load initial reviews on page load
   loadReviews();
 
-  // Services section toggle
+  // Service section toggle
   const titles = document.querySelectorAll('.service-title');
   titles.forEach(title => {
     title.addEventListener('click', () => {

@@ -1,6 +1,4 @@
 
-actual doamin: https://shiequinn.com/
+https://shiequinn.com/
 
 heroku-database with JAWSDB /SQL
-
-
