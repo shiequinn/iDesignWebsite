@@ -1,5 +1,5 @@
 // Define API base URL
-const API_BASE_URL = 'https://idesignwebsite-905e545d981b.herokuapp.com/reviews'; // Update with your actual API endpoint
+const API_BASE_URL = 'https://idesignwebsite-905e545d981b.herokuapp.com/api/reviews'; // Update with your actual API endpoint
 
 document.addEventListener('DOMContentLoaded', () => {
   const reviewWrapper = document.getElementById('reviewWrapper');
