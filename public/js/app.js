@@ -11,7 +11,7 @@ const port = process.env.PORT || 3000;
 // Middleware to parse JSON request bodies
 app.use(express.json());
 
-// Optional: serve static files from 'public' folder
+// Serve static files from 'public' folder
 app.use(express.static('public'));
 
 // Root route
@@ -19,8 +19,19 @@ app.get('/', (req, res) => {
   res.send('Hello from the server!');
 });
 
-// Example: use your routes (if you have routes.js)
-app.use('/api', routes); // Mount at /api
+// Mount your routes
+app.use('/api', routes);
+
+// Optional: handle 404 errors
+app.use((req, res, next) => {
+  res.status(404).json({ message: 'Not Found' });
+});
+
+// Optional: error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: 'Server Error' });
+});
 
 // Start server
 app.listen(port, () => {

@@ -29,7 +29,7 @@ function authenticateToken(req, res, next) {
 }
 
 // Add review (protected route)
-router.post('/api/reviews', authenticateToken, async (req, res) => {
+router.post('/reviews', authenticateToken, async (req, res) => {
   const { name, position, review } = req.body;
 
   if (!name || !position || !review) {
@@ -58,7 +58,7 @@ router.post('/api/reviews', authenticateToken, async (req, res) => {
 });
 
 // Get all reviews
-router.get('/api/reviews', async (req, res) => {
+router.get('/reviews', async (req, res) => {
   try {
     const [results] = await pool.query('SELECT * FROM reviews');
     res.json(results);
