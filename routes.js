@@ -60,7 +60,7 @@ router.post('/reviews', authenticateToken, async (req, res) => {
 // Get all reviews
 router.get('/reviews', async (req, res) => {
   try {
-    const [results] = await pool.query('SELECT * FROM reviews');
+    const [results] = await pool.query('SELECT * FROM xbxm73r0k93viqkl.reviews;');
     res.json(results);
   } catch (err) {
     console.error('Error fetching reviews:', err);

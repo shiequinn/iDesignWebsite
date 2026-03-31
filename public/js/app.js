@@ -22,12 +22,12 @@ app.get('/', (req, res) => {
 // Mount your routes
 app.use('/api', routes);
 
-// Optional: handle 404 errors
+// Handle 404 - Not Found
 app.use((req, res, next) => {
   res.status(404).json({ message: 'Not Found' });
 });
 
-// Optional: error handling middleware
+// Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ message: 'Server Error' });
