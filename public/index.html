@@ -217,15 +217,6 @@
       <p>Here's what our clients have to say about us:</p>
     </div>
   <div class="reviews">
-  <div class="star-rating">
-  <h4>Rate Our Services</h4>
-  <input type="hidden" name="rating" id="ratingInput" />
-  <span class="star">&#9733;</span>
-  <span class="star">&#9733;</span>
-  <span class="star">&#9733;</span>
-  <span class="star">&#9733;</span>
-  <span class="star">&#9733;</span>
-
   <div class="reviews-container" id="reviews-container">
       <!-- Review form -->
       <div class="review-form">
@@ -233,13 +224,19 @@
         <form id="clientReviewForm">
           <label for="clientName">Name:</label>
           <input type="text" id="clientName" name="clientName" required />
-
           <label for="clientPosition">Position:</label>
           <input type="text" id="clientPosition" name="clientPosition" required />
-
           <label for="clientReview">Review:</label>
           <textarea id="clientReview" name="clientReview" rows="4" required></textarea>
-
+          <label for="ratingInput">Rating:</label>
+                    <div class="star-rating">
+  <input type="hidden" name="rating" id="ratingInput" />
+  <span class="star">&#9733;</span>
+  <span class="star">&#9733;</span>
+  <span class="star">&#9733;</span>
+  <span class="star">&#9733;</span>
+  <span class="star">&#9733;</span>
+          <input type="hidden" id="ratingInput" name="rating" />
           <button type="submit">Submit Review</button>
         </form>
       </div>

@@ -1562,14 +1562,20 @@ Video {
 
 
 }
-.star {
-  cursor: pointer;
-  font-size: 24px;
-  color: #ccc; /* default color */
+.star-rating{
+    align-items: center;
 }
+
+.star {
+  font-size: 24px;
+  cursor: pointer;
+  color: gray; /* default color */
+  transition: color 0.2s;
+}
+
 .star.hover,
-.star.selected {
-  color: #ffcc00; /* highlighted color */
+.star.filled {
+  color: gold;
 }
 
 /* Style for the content wrapper that will slide */

@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <p class="client-name">${review.name}</p>
         <p class="client-position">${review.position}</p>
         <p class="client-review">"${review.review}"</p>
+        <p class="client-rating">Rating: ${review.rating}</p>
       </div>
     `;
     return reviewItem;
@@ -21,33 +22,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Load reviews from server and append new ones
   async function loadReviews() {
-  try {
-    const response = await fetch(`${API_BASE_URL}`);
-    if (!response.ok) throw new Error(`Network response was not ok: ${response.status}`);
+    try {
+      const response = await fetch(`${API_BASE_URL}`);
+      if (!response.ok) throw new Error(`Network response was not ok: ${response.status}`);
 
-    const contentType = response.headers.get('content-type');
-    if (!contentType || !contentType.includes('application/json')) {
-      throw new Error(`Expected JSON response, but received: ${contentType}`);
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error(`Expected JSON response, but received: ${contentType}`);
+      }
+
+      const reviews = await response.json();
+
+      // Do NOT clear existing reviews
+      // reviewWrapper.innerHTML = '';
+
+      // Append only new reviews
+      reviews.forEach(review => {
+        const reviewItem = createReviewItem(review);
+        reviewWrapper.appendChild(reviewItem);
+      });
+
+      // Re-initialize Swiper if using slider
+      initializeSwiper();
+
+    } catch (err) {
+      console.error('Failed to load reviews:', err);
     }
-
-    const reviews = await response.json();
-
-    // Do NOT clear existing reviews
-    // reviewWrapper.innerHTML = '';
-
-    // Append only new reviews
-    reviews.forEach(review => {
-      const reviewItem = createReviewItem(review);
-      reviewWrapper.appendChild(reviewItem);
-    });
-
-    // Re-initialize Swiper if using slider
-    initializeSwiper();
-
-  } catch (err) {
-    console.error('Failed to load reviews:', err);
   }
-}
 
   // Submit new review
   document.getElementById('clientReviewForm')?.addEventListener('submit', async (e) => {
@@ -96,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
       mySwiper.destroy(true, true);
     }
     if (document.querySelector('#reviewSwiper')) {
-      mySwiper = new Swiper('#reviewSwiper', {
+      mySwiper = new mySwiper('#reviewSwiper', {
         slidesPerView: 1,
         spaceBetween: 20,
         navigation: {
@@ -116,9 +117,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function highlightStars(rating) {
     stars.forEach((star, index) => {
       if (index < rating) {
-        star.classList.add('hover', 'selected');
+        star.classList.add('filled');
       } else {
-        star.classList.remove('hover', 'selected');
+        star.classList.remove('filled');
       }
     });
   }
@@ -138,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Load initial reviews (static + fetch)
+  // Load initial reviews
   loadReviews();
 
   // Service section toggle
