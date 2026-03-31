@@ -13,7 +13,6 @@ import session from 'express-session';
 import pool from './db.js'; 
 import routes from './routes.js'; // Your routes file
 
-
 // Setup __dirname for ES modules
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -22,25 +21,25 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
-app.use(cors());
 
 // Middleware setup
 app.use(express.static('public'));
 app.use(express.json());
 
-// CORS setup
+// Define the list of allowed origins
 const allowedOrigins = [
   'https://shiequinn.com',
+  'https://idesignwebsite-905e545d981b.herokuapp.com/',
   'http://127.0.0.1:5500',
   'http://localhost:5500',
   'http://127.0.0.1:5501',
   'http://localhost:5501',
-
-
 ];
 
+// Setup CORS with custom origin validation and logging
 app.use(cors({
   origin: (origin, callback) => {
+    console.log('Request from origin:', origin);
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
