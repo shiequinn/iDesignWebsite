@@ -410,6 +410,8 @@ hr {
 
     .hamburger {
         display:flex;
+        color: #333;
+
         width: 25px;
         /* smaller hamburger for very small screens */
         height: 25px;
