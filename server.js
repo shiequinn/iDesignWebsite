@@ -29,7 +29,7 @@ app.use(express.json());
 // Define the list of allowed origins
 const allowedOrigins = [
   'https://shiequinn.com',
-  'https://idesignwebsite-905e545d981b.herokuapp.com/',
+  'https://idesignwebsite-905e545d981b.herokuapp.com',
   'http://127.0.0.1:5500',
   'http://localhost:5500',
   'http://127.0.0.1:5501',

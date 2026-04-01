@@ -275,6 +275,7 @@ hr {
     transform: rotate(-45deg) translate(5px, -5px);
 }
 
+
 /* Media queries for responsive design */
 @media(max-width:840px){
     .nav-item a {
@@ -285,7 +286,7 @@ hr {
     }
 
     .nav-item a:hover {
-        background-color: #f8f8f8;
+        background-color: #555;
         /* maintain hover effect */
         padding: 10px;
         /* smaller padding for hover */
@@ -374,13 +375,14 @@ hr {
     }
 
     .nav-item a:hover {
-        background-color: #f8f8f8;
+        background-color: #555;
         /* maintain hover effect */
         padding: 10px;
         /* smaller padding for hover */
     }
 
     .hamburger {
+        display: flex;
         width: 30px;
         /* smaller hamburger for mobile */
         height: 25px;
@@ -400,13 +402,14 @@ hr {
     }
     
     .nav-item a:hover {
-        background-color: #f8f8f8;
+        background-color: #555;
         /* maintain hover effect */
         padding: 10px;
         /* smaller padding for hover */
     }
 
     .hamburger {
+        display:flex;
         width: 25px;
         /* smaller hamburger for very small screens */
         height: 25px;

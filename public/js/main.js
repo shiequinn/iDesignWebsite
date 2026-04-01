@@ -142,6 +142,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // Load initial reviews
   loadReviews();
 
+  // Select hamburger and nav
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open'); // toggle the "X" transform
+  navMenu.classList.toggle('active'); // toggle menu visibility
+});
   // Service section toggle
   const titles = document.querySelectorAll('.service-title');
   titles.forEach(title => {
