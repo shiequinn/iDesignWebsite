@@ -1,5 +1,5 @@
 // Define API base URL
-const API_PROXY_URL = '/reviews'; // Your API endpoint
+const API_PROXY_URL = '/api/reviews';// Your API endpoint
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -23,34 +23,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Load reviews from server and append new ones
   async function loadReviews() {
-    try {
-      const response = await fetch(`${API_PROXY_URL}`);
-      if (!response.ok) throw new Error(`Network response was not ok: ${response.status}`);
+  const token = 'your-jwt-token'; // Replace this with your actual token retrieval logic
 
-      const contentType = response.headers.get('content-type');
-      if (!contentType || !contentType.includes('application/json')) {
-        throw new Error(`Expected JSON response, but received: ${contentType}`);
+  try {
+    const response = await fetch(`${API_PROXY_URL}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
       }
+    });
+    if (!response.ok) throw new Error(`Network response was not ok: ${response.status}`);
 
-      const reviews = await response.json();
-
-      // Do NOT clear existing reviews
-      // reviewWrapper.innerHTML = '';
-
-      // Append only new reviews
-      reviews.forEach(review => {
-        const reviewItem = createReviewItem(review);
-        reviewWrapper.appendChild(reviewItem);
-      });
-
-      // Re-initialize Swiper if using slider
-      initializeSwiper();
-
-    } catch (err) {
-      console.error('Failed to load reviews:', err);
+    const contentType = response.headers.get('content-type');
+    if (!contentType || !contentType.includes('application/json')) {
+      throw new Error(`Expected JSON response, but received: ${contentType}`);
     }
-  }
 
+    const reviews = await response.json();
+
+    // Do NOT clear existing reviews
+    reviews.forEach(review => {
+      const reviewItem = createReviewItem(review);
+      reviewWrapper.appendChild(reviewItem);
+    });
+
+    initializeSwiper();
+
+  } catch (err) {
+    console.error('Failed to load reviews:', err);
+  }
+}
   // Submit new review
   document.getElementById('clientReviewForm')?.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -89,6 +91,30 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error('Fetch error:', err);
       alert('An error occurred: ' + err.message);
     }
+  });
+  //for log in and authentication
+   async function login(username, password) {
+    const response = await fetch('/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username, password })
+    });
+    if (response.ok) {
+      const data = await response.json();
+      localStorage.setItem('jwtToken', data.token);
+      alert('Logged in!');
+    } else {
+      alert('Invalid credentials');
+    }
+  }
+
+  document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const username = document.getElementById('loginUsername').value;
+    const password = document.getElementById('loginPassword').value;
+    login(username, password);
   });
 
   // Initialize Swiper for reviews

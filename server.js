@@ -7,6 +7,7 @@ import session from 'express-session';
 import fetch from 'node-fetch'; // <-- Added import
 import pool from './db.js'; 
 import routes from './routes.js';
+import loginRoute from './loginRoute.js';
 
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -18,6 +19,7 @@ const app = express();
 
 app.use(express.static('public'));
 app.use(express.json());
+app.use('/api', loginRoute);
 
 const allowedOrigins = [
   'https://shiequinn.com',
