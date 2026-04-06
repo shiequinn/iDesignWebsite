@@ -2,12 +2,12 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <link rel="preload" href="https://code.tidio.co/widget-v4/fonts/mulish_SGhgqk3wotYKNnBQ.woff2" as="font"
     type="font/woff2" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
   <link rel="stylesheet" href="./css/main.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -37,7 +37,7 @@
   <!-- Header -->
   <header class="header">
     <div class="logo">
-      <img src="images/sqlogo2.png" alt="Shiequinn WebDev Company Logo" class="logo-image" />
+      <img src="images/sqlogo2.png" alt="Shiequinn WebDev Company Logo" class="logo-image">
       <h1 class="logo-text">iDesign 
         <br>
         <span class="logo-subtext">by: A.N.S.Q Creating Website WEB Development Services</span></h1>
@@ -61,7 +61,7 @@
   <!-- Intro Video & Content -->
   <div class="intro">
     <video id="myVideo" autoplay loop muted>
-      <source src="images/introVid2.mp4" type="video/mp4" />
+      <source src="images/introVid2.mp4" type="video/mp4">
     </video>
     <div class="intro-slide">
       <div class="intro-text">
@@ -88,12 +88,12 @@
         </div>
       </div>
       <div class="intro-image">
-        <img src="images/introImage.webp" alt="Intro Image" class="intro-image" />
+        <img src="images/introImage.webp" alt="Intro Image" class="intro-image">
       </div>
     </div>
   </div>
 
-  <hr />
+  <hr>
 
   <!-- Projects Section -->
   <div class="projects">
@@ -107,35 +107,35 @@
         <li class="project-item">
           <h3>E-commerce</h3>
           <img src="images/shiequinnTeaHouse.png" alt="E-commerce Project" class="project-image"
-            data-project="images/shiequinnTeaHouse.png" />
+            data-project="images/shiequinnTeaHouse.png">
           <a href="https://shiequinn.github.io/shiequinnTea/" class="view-button" target="_blank"
             rel="noopener noreferrer">View Project</a>
         </li>
         <li class="project-item">
           <h3>Responsive Website</h3>
           <img src="images/multifix.png" alt="Business Project" class="project-image"
-            data-project="images/multifix.png" />
+            data-project="images/multifix.png">
           <a href="https://multifixsolutions.org" class="view-button" target="_blank" rel="noopener noreferrer">View
             Project</a>
         </li>
         <li class="project-item">
           <h3>Portfolio</h3>
           <img src="images/newportfolio.png" alt="Portfolio Project" class="project-image"
-            data-project="images/newportfolio.png" />
+            data-project="images/newportfolio.png">
           <a href="https://ansqwebdeb.shiequinn.com" class="view-button" target="_blank" rel="noopener noreferrer">View
             Project</a>
         </li>
         <li class="project-item">
           <h3>Landing Page</h3>
           <img src="images/ShiequinnDesign&Events.png" alt="Corporate Project" class="project-image"
-            data-project="images/ShiequinnDesign&Events.png" />
+            data-project="images/ShiequinnDesign&Events.png">
           <a href="https://shiequinn.github.io/shiequinnDesignAndEvents/" class="view-button" target="_blank"
             rel="noopener noreferrer">View Project</a>
         </li>
         <li class="project-item">
           <h3>Other Service's</h3>
           <img src="images/ohmyfood.png" alt="Other Services Project" class="project-image"
-            data-project="images/ohmyfood.png" />
+            data-project="images/ohmyfood.png">
           <a href="https://shiequinn.github.io/ohmyfood/" class="view-button" target="_blank"
             rel="noopener noreferrer">View Project</a>
         </li>
@@ -143,7 +143,7 @@
     </div>
   </div>
 
-  <hr />
+  <hr>
 
   <!-- Services Section -->
   <div class="our-services">
@@ -199,9 +199,9 @@
     <p>We look forward to working with you!</p>
   </div>
 
-  <hr />
+  <hr>
 
-  <!-- Reviews Section -->
+
   <!-- Reviews Section -->
 <div class="reviews-header">
   <h2>Client Reviews</h2>
@@ -214,24 +214,23 @@
       <h3>Leave Your Review</h3>
       
       <form id="clientReviewForm">
-        <label for="ratingInput">Rating:</label>
-        <!-- Hidden input to store rating value -->
-        <input type="hidden" id="ratingInput" name="rating" />
+    <label for="ratingInput">Rating</label>
+    <input type="number" id="ratingInput" name="rating" min="1" max="5">
 
         <!-- Star rating -->
-        <div class="star-rating" aria-label="Rate our service">
-          <span class="star" data-value="1" title="Rate 1">&#9733;</span>
-          <span class="star" data-value="2" title="Rate 2">&#9733;</span>
-          <span class="star" data-value="3" title="Rate 3">&#9733;</span>
-          <span class="star" data-value="4" title="Rate 4">&#9733;</span>
-          <span class="star" data-value="5" title="Rate 5">&#9733;</span>
+<div class="star-rating" role="radiogroup" aria-label="Rate our service">
+          <span class="star" data-value="1" title="Rate 1" role="radio" aria-checked="false">&#9733;</span>
+          <span class="star" data-value="2" title="Rate 2" role="radio" aria-checked="false">&#9733;</span>
+          <span class="star" data-value="3" title="Rate 3" role="radio" aria-checked="false">&#9733;</span>
+          <span class="star" data-value="4" title="Rate 4" role="radio" aria-checked="false">&#9733;</span>
+          <span class="star" data-value="5" title="Rate 5" role="radio" aria-checked="false">&#9733;</span>
         </div>
 
         <label for="clientName">Name:</label>
-        <input type="text" id="clientName" name="clientName" required />
+        <input type="text" id="clientName" name="clientName" required>
 
         <label for="clientPosition">Position:</label>
-        <input type="text" id="clientPosition" name="clientPosition" required />
+        <input type="text" id="clientPosition" name="clientPosition" required>
 
         <label for="clientReview">Review:</label>
         <textarea id="clientReview" name="clientReview" rows="4" required></textarea>
