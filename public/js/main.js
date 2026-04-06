@@ -1,5 +1,6 @@
 // Define API base URL
 const API_BASE_URL = 'https://idesignwebsite-905e545d981b981b.herokuapp.com/api/reviews'; // Your API endpoint
+fetch('https://cors-anywhere.herokuapp.com/https://idesignwebsite-905e545d981b981b.herokuapp.com/api/reviews')
 
 document.addEventListener('DOMContentLoaded', () => {
   const reviewWrapper = document.getElementById('reviewWrapper');
