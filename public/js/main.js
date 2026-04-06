@@ -1,6 +1,6 @@
 // Define API base URL
-const API_BASE_URL = 'https://idesignwebsite-905e545d981b981b.herokuapp.com/api/reviews'; // Your API endpoint
-fetch('https://cors-anywhere.herokuapp.com/https://idesignwebsite-905e545d981b981b.herokuapp.com/api/reviews')
+const API_PROXY_URL = '/reviews'; // Your API endpoint
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const reviewWrapper = document.getElementById('reviewWrapper');
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Load reviews from server and append new ones
   async function loadReviews() {
     try {
-      const response = await fetch(`${API_BASE_URL}`);
+      const response = await fetch(`${API_PROXY_URL}`);
       if (!response.ok) throw new Error(`Network response was not ok: ${response.status}`);
 
       const contentType = response.headers.get('content-type');
