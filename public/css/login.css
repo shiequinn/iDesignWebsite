@@ -1,0 +1,272 @@
+/* Style for the login section container */
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box; 
+    font-family: "Montserrat", sans-serif;
+    
+    
+    
+}
+html{
+    color: #333;
+    overflow-x: hidden;
+    width: 100%;
+    height: 100%;
+}
+/* Define the animation for background color */
+@keyframes colorChange {
+  0% {
+    background-color: #ff7f50; /* Starting color (Coral) */
+  }
+  25% {
+    background-color: #6a5acd; /* Slate Blue */
+  }
+  50% {
+    background-color: #20b2aa; /* Light Sea Green */
+  }
+  75% {
+    background-color: #ff69b4; /* Hot Pink */
+  }
+  100% {
+    background-color: #ff7f50; /* Back to Coral */
+  }
+}
+/* Style the body to animate background */
+body {
+  margin: 0; /* Remove default margin */
+  animation: colorChange 10s infinite ease-in-out;
+}
+@media (min-width: 1200px) {
+  body {
+    font-size: 18px;
+  }
+}
+/* Small desktops / landscape tablets */
+@media (min-width: 1024px) {
+  body {
+    font-size: 16px;
+  }
+}
+/* for tablet devices*/
+@media (max-width: 840px) {
+    body {
+        font-size: 16px;
+        margin: 0;
+    }
+
+}
+/* Extra large phones */
+@media (max-width: 768px) {
+    body {
+        font-size: 15px;
+        /* Adjust for larger phones */
+        overflow-x: hidden;
+        margin: 0;
+    }
+}
+/* Large phones */
+@media (max-width: 460px) {
+    body {
+        font-size: 15px;
+        /* Default font size */
+        overflow-x: hidden;
+        margin: 0;
+    }
+}
+/* Medium phones */
+@media (max-width: 380px) {
+    body {
+        font-size: 14px;
+        /* Slightly larger font for better readability */
+        overflow-x: hidden;
+        margin: 0;
+
+    }
+}
+/* Medium phones */
+@media (max-width: 320px) {
+    body {
+        font-size: 14px;
+        /* Slightly larger font for better readability */
+        overflow-x: hidden;
+        margin: 0;
+
+    }
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-family: "Montserrat", sans-serif;
+    color: #333;
+    font-weight: 600;
+    text-align: center;
+}
+/*about us section*/
+.backToHomeLink {
+   width:150px;
+    height: 50px;
+    font-size: 16px;
+    color: #333;
+    text-decoration: none;
+    background-color: #333;
+    border-radius: 5px;
+    padding: 10px;
+    color: #f8f8f8;
+    transition: background-color 0.3s ease;
+
+}
+
+.backToHomeLink:hover {
+  background-color:#ED8171;
+    color: #f8f8f8;
+}
+.login-section {
+  max-width: 500px;
+  height: 100%;
+  margin: 20px auto;
+  padding: 15px;
+  background-color: #ff69b4; /* Light background */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Heading */
+.login-section h3 {
+  text-align: center;
+  margin-bottom: 15px;
+  font-family: Arial, sans-serif;
+  font-size: 1.5em;
+  color: #333;
+}
+
+/* Labels */
+#loginForm label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  font-size: 1em;
+  color: #555;
+}
+
+/* Inputs */
+#loginForm input {
+  width: 100%;
+  padding: 8px 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+#loginForm input:focus {
+  border-color:#20b2aa;
+  outline: none;
+}
+
+/* Button */
+#loginForm button {
+  width: 100%;
+  padding: 10px;
+  background-color: #20b2aa;
+  color:#333;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#loginForm button:hover {
+  background-color: #ddd;
+  color: #333;
+}
+
+
+.footer {
+    width: 100%;
+    height: 150px;
+    background-color: #ED8171;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+  
+}
+
+.footer p {
+    margin: 5px 0;
+    color: black;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.footer a {
+    font-size: 20px;
+    color: black;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #04529D;
+}
+
+.footer a:active {
+    color: #f8f8f8;
+}
+
+.footer a:visited {
+    color: #f8f8f8;
+}
+
+.footer a:focus {
+    color: #f8f8f8;
+}
+
+@media (max-width: 360px) {
+    .footer {
+        width:100%;
+        /* Full width for smaller screens */    
+        height: 300px;
+        /* Adjust height for smaller screens */
+        padding:0;
+        margin:0;
+    }
+
+    .footer p {
+        font-size: 12px;
+        /* Smaller font size for paragraphs */
+    }
+
+    .footer a {
+        font-size: 16px;
+        /* Smaller font size for links */
+        padding:10px;
+    }
+    .footer a:hover {
+        color: #04529D;
+        /* Change color on hover */
+    }
+    .footer a:active {
+        color: #f8f8f8;
+        /* Change color on active */
+    }
+    .footer a:visited {
+        color: #f8f8f8;
+        /* Change color on visited */
+    }
+    .footer a:focus {
+        color: #f8f8f8;
+        /* Change color on focus */
+    }
+
+}

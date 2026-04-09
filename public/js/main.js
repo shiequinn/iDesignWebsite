@@ -1,6 +1,5 @@
 // Define API base URL
-const API_PROXY_URL = '/api/reviews';// Your API endpoint
-
+const API_PROXY_URL = '/review'; 
 
 document.addEventListener('DOMContentLoaded', () => {
   const reviewWrapper = document.getElementById('reviewWrapper');
@@ -39,13 +38,17 @@ document.addEventListener('DOMContentLoaded', () => {
       throw new Error(`Expected JSON response, but received: ${contentType}`);
     }
 
-    const reviews = await response.json();
-
-    // Do NOT clear existing reviews
-    reviews.forEach(review => {
-      const reviewItem = createReviewItem(review);
-      reviewWrapper.appendChild(reviewItem);
-    });
+    const data = await response.text();
+    if (data) {
+      const reviews = JSON.parse(data);
+      // Do NOT clear existing reviews
+      reviews.forEach(review => {
+        const reviewItem = createReviewItem(review);
+        reviewWrapper.appendChild(reviewItem);
+      });
+    } else {
+      console.log('No reviews found.');
+    }
 
     initializeSwiper();
 
@@ -66,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Submitting review:', payload);
 
     try {
-      const response = await fetch(`${API_BASE_URL}`, {
+      const response = await fetch(`${API_PROXY_URL}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -92,30 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('An error occurred: ' + err.message);
     }
   });
-  //for log in and authentication
-   async function login(username, password) {
-    const response = await fetch('/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ username, password })
-    });
-    if (response.ok) {
-      const data = await response.json();
-      localStorage.setItem('jwtToken', data.token);
-      alert('Logged in!');
-    } else {
-      alert('Invalid credentials');
-    }
-  }
-
-  document.getElementById('loginForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const username = document.getElementById('loginUsername').value;
-    const password = document.getElementById('loginPassword').value;
-    login(username, password);
-  });
 
   // Initialize Swiper for reviews
   let mySwiper;
@@ -124,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
       mySwiper.destroy(true, true);
     }
     if (document.querySelector('#reviewSwiper')) {
-      mySwiper = new mySwiper('#reviewSwiper', {
+      mySwiper = new Swiper('#reviewSwiper', {
         slidesPerView: 1,
         spaceBetween: 20,
         navigation: {
@@ -170,13 +149,14 @@ document.addEventListener('DOMContentLoaded', () => {
   loadReviews();
 
   // Select hamburger and nav
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
+  const hamburger = document.querySelector('.hamburger');
+  const navMenu = document.querySelector('.nav-menu');
 
-hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('open'); // toggle the "X" transform
-  navMenu.classList.toggle('active'); // toggle menu visibility
-});
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open'); // toggle the "X" transform
+    navMenu.classList.toggle('active'); // toggle menu visibility
+  });
+
   // Service section toggle
   const titles = document.querySelectorAll('.service-title');
   titles.forEach(title => {

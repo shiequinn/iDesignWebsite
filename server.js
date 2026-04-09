@@ -57,7 +57,7 @@ app.use('/api', routes);
 
 // New route to fetch reviews
 app.get('/reviews', async (req, res) => {
-  const apiUrl = 'https://cors-anywhere.herokuapp.com/https://idesignwebsite-905e545d981b981b.herokuapp.com/api/reviews';
+  const apiUrl = 'https://idesignwebsite-905e545d981b981b.herokuapp.com/api/reviews';
 
   try {
     const response = await fetch(apiUrl);
@@ -68,7 +68,6 @@ app.get('/reviews', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch reviews' });
   }
 });
-
 // Optional root route
 app.get('/', (req, res) => res.send('Hello World'));
 
