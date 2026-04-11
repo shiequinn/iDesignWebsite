@@ -55,6 +55,20 @@ app.use(session({
 
 app.use('/api', routes);
 
+//new route for login
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;
+
+  // Your user verification logic here
+  if (username === 'admin' && password === 'password123') {
+    // Successful login
+    res.status(200).json({ message: 'Login successful' });
+  } else {
+    // Unauthorized
+    res.status(401).json({ message: 'Invalid credentials' });
+  }
+});
+
 // New route to fetch reviews
 app.get('/reviews', async (req, res) => {
   const apiUrl = 'https://idesignwebsite-905e545d981b981b.herokuapp.com/api/reviews';
