@@ -101,6 +101,17 @@ h1,h2,h3,h4,h5,h6{
     font-weight: 600;
     text-align: center;
 }
+h1 {
+    font-size: 36px;
+    margin: 0;
+}
+
+hr {
+    border: none;
+    height: 10px;
+    background-color: #3b452662;
+    margin: 20px 0;
+}
 /*about us section*/
 .backToHomeLink {
    width:150px;
@@ -120,12 +131,38 @@ h1,h2,h3,h4,h5,h6{
   background-color:#ED8171;
     color: #f8f8f8;
 }
+.login-header{
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    text-align: center;
+}
+.login-header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+.login-header p {
+    font-size: 1.2em;
+    color: #555;
+}
+
+.login-container {
+  width: 100%;
+  height: auto;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+
+
+}
+
 .login-section {
   max-width: 500px;
   height: 100%;
   margin: 20px auto;
   padding: 15px;
-  background-color: #ff69b4; /* Light background */
+  background-color: #ddbacb; /* Light background */
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -164,7 +201,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 #loginForm input:focus {
-  border-color:#20b2aa;
+  border-color:#d5edec;
   outline: none;
 }
 
