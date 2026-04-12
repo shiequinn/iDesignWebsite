@@ -56,7 +56,7 @@ app.use(session({
 app.use('/api', routes);
 
 //new route for login
-app.post('/login', (req, res) => {
+app.post('/index.login.html', (req, res) => {
   const { username, password } = req.body;
 
   // Your user verification logic here
@@ -70,8 +70,8 @@ app.post('/login', (req, res) => {
 });
 
 // New route to fetch reviews
-app.get('/reviews', async (req, res) => {
-  const apiUrl = 'https://idesignwebsite-905e545d981b981b.herokuapp.com/api/reviews';
+app.get('/index.reviews.html', async (req, res) => {
+  const apiUrl = 'https://idesignwebsite-905e545d981b981b.herokuapp.com/api/index.reviews.html';
 
   try {
     const response = await fetch(apiUrl);

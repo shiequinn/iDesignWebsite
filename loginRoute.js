@@ -12,7 +12,7 @@ const users = [
   { username: 'user', password: 'mypassword' }
 ];
 
-router.post('/login', (req, res) => {
+router.post('/index.login.html', (req, res) => {
   const { username, password } = req.body;
 
   const user = users.find(u => u.username === username && u.password === password);

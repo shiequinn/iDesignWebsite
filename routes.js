@@ -2,8 +2,6 @@ import pool from './db.js';
 import jwt from 'jsonwebtoken';      
 import express from 'express';
 
-
-
 const router = express.Router();
 
 console.log('Loading routes.js');
@@ -29,7 +27,7 @@ function authenticateToken(req, res, next) {
 }
 
 // Add review (protected route)
-router.post('../review', authenticateToken, async (req, res) => {
+router.post('/reviews', authenticateToken, async (req, res) => {
   const { name, position, review } = req.body;
 
   if (!name || !position || !review) {
@@ -58,15 +56,14 @@ router.post('../review', authenticateToken, async (req, res) => {
 });
 
 // Get all reviews
-router.get('../review', async (req, res) => {
+router.get('/reviews', async (req, res) => {
   try {
-    const [results] = await pool.query('SELECT * FROM xbxm73r0k93viqkl.reviews;');
+    const [results] = await pool.query('SELECT * FROM reviews');
     res.json(results);
   } catch (err) {
     console.error('Error fetching reviews:', err);
     res.status(500).json({ message: 'Error fetching reviews' });
   }
 });
-
 
 export default router;
