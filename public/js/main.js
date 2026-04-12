@@ -1,5 +1,5 @@
 // Define API base URL
-const API_PROXY_URL = '/review'; 
+const API_PROXY_URL = '/index.reviews.html'; // Adjust this if your API endpoint is different
 
 document.addEventListener('DOMContentLoaded', () => {
   const reviewWrapper = document.getElementById('reviewWrapper');
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Load reviews from server and append new ones
   async function loadReviews() {
-  const token = 'your-jwt-token'; // Replace this with your actual token retrieval logic
+  const token = '972431bb52be49cddd3f36420df375d54f21151f8551d06548aba499deb56e5b'; // Replace this with your actual token retrieval logic
 
   try {
     const response = await fetch(`${API_PROXY_URL}`, {

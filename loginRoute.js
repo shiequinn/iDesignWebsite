@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 
 const router = express.Router();
 
-const JWT_SECRET = 'your_secret_key'; // Change this to a secure key
+const JWT_SECRET ='972431bb52be49cddd3f36420df375d54f21151f8551d06548aba499deb56e5b'; // Change this to a secure key
 
 // Dummy user data for demonstration
 const users = [
