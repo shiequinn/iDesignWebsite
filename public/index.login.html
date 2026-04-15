@@ -54,12 +54,12 @@
     //for log in and authentication
  <script>
   document.getElementById('loginForm').addEventListener('submit', function(e) {
-    e.preventDefault(); // Prevent form from reloading the page
+    e.preventDefault();
 
     const username = document.getElementById('loginUsername').value;
     const password = document.getElementById('loginPassword').value;
 
-    fetch('http://localhost:3001/login', {
+    fetch('https://shiequinn.com/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -74,10 +74,16 @@
       }
     })
     .then(data => {
-      alert(data.message); // Show success message or redirect
+      // Save token in localStorage
+      if (data.token) {
+        localStorage.setItem('authToken', data.token);
+      }
+      alert(data.message);
+      // Redirect to dashboard or another page
+      window.location.href = '/reviews.html'; // Adjust this to your desired page after login
     })
     .catch(error => {
-      alert(error.message); // Show error message
+      alert(error.message);
     });
   });
 </script>

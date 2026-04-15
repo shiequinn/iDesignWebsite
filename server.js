@@ -53,10 +53,10 @@ app.use(session({
   }
 }));
 
-app.use('/api', routes);
+app.use('/api',routes);
 
 //new route for login
-app.post('/api/login', (req, res) => {
+app.post('/login', (req, res) => {
   const { username, password } = req.body;
 
   // Your user verification logic here
@@ -70,8 +70,9 @@ app.post('/api/login', (req, res) => {
 });
 
 // New route to fetch reviews
-app.get('/api/reviews', async (req, res) => {
+app.get('/reviews', async (req, res) => {
   const apiUrl = 'https://idesignwebsite-905e545d981b981b.herokuapp.com/api/index.reviews.html';
+                 "https://shiequinn.com/api/index.reviews"; // Replace with your actual API endpoint
 
   try {
     const response = await fetch(apiUrl);
