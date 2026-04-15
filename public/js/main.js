@@ -1,5 +1,5 @@
 // Define API base URL
-const API_PROXY_URL = '/api/reviews'; // Adjust this if your API endpoint is different
+const API_PROXY_URL = 'https://shiequinn.com/api/reviews'; // Adjust this if your API endpoint is different
 
 document.addEventListener('DOMContentLoaded', () => {
   const reviewWrapper = document.getElementById('reviewWrapper');
