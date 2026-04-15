@@ -174,6 +174,13 @@ stars.forEach((star, index) => {
     if (ratingInput) ratingInput.value = selectedRating;
   });
 });
+// Navigation to reviews page
+const goToReviewsBtn = document.getElementById('goToReviewsBtn');
+if (goToReviewsBtn) {
+  goToReviewsBtn.addEventListener('click', () => {
+    window.location.href = '/index.reviews.html';
+  });
+};
 });
 
 // Hamburger menu toggle
