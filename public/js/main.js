@@ -22,40 +22,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Load reviews from server and append new ones
   async function loadReviews() {
-  const token = '972431bb52be49cddd3f36420df375d54f21151f8551d06548aba499deb56e5b'; // Replace this with your actual token retrieval logic
+    const token = '972431bb52be49cddd3f36420df375d54f21151f8551d06548aba499deb56e5b'; // Your token
 
-  try {
-    const response = await fetch(`${API_PROXY_URL}`, {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      }
-    });
-    if (!response.ok) throw new Error(`Network response was not ok: ${response.status}`);
-
-    const contentType = response.headers.get('content-type');
-    if (!contentType || !contentType.includes('application/json')) {
-      throw new Error(`Expected JSON response, but received: ${contentType}`);
-    }
-
-    const data = await response.text();
-    if (data) {
-      const reviews = JSON.parse(data);
-      // Do NOT clear existing reviews
-      reviews.forEach(review => {
-        const reviewItem = createReviewItem(review);
-        reviewWrapper.appendChild(reviewItem);
+    try {
+      const response = await fetch(`${API_PROXY_URL}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
       });
-    } else {
-      console.log('No reviews found.');
+      if (!response.ok) throw new Error(`Network response was not ok: ${response.status}`);
+
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error(`Expected JSON response, but received: ${contentType}`);
+      }
+
+      const data = await response.text();
+      if (data) {
+        const reviews = JSON.parse(data);
+        // Do NOT clear existing reviews
+        reviews.forEach(review => {
+          const reviewItem = createReviewItem(review);
+          reviewWrapper.appendChild(reviewItem);
+        });
+      } else {
+        console.log('No reviews found.');
+      }
+
+      initializeSwiper();
+
+    } catch (err) {
+
+      
+      console.error('Failed to load reviews:', err);
     }
-
-    initializeSwiper();
-
-  } catch (err) {
-    console.error('Failed to load reviews:', err);
   }
-}
+
   // Submit new review
   document.getElementById('clientReviewForm')?.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -173,4 +176,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // Navigation button to reviews page
+  const goToReviewsBtn = document.getElementById('goToReviewsBtn');
+  if (goToReviewsBtn) {
+    goToReviewsBtn.addEventListener('click', () => {
+      window.location.href = '/index.reviews.html'; // Adjust path if needed
+    });
+  }
 });

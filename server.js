@@ -22,7 +22,7 @@ app.use(express.json());
 app.use('/api', loginRoute);
 
 const allowedOrigins = [
-  'https://shiequinn.com',
+  'https://shiequinn.com', // production domain
   'https://idesignwebsite-905e545d981b981b.herokuapp.com',
   'http://127.0.0.1:5500',
   'http://localhost:5500',
@@ -47,7 +47,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    secure: false,
+    secure: true, 
     httpOnly: true,
     sameSite: 'lax'
   }
@@ -56,7 +56,7 @@ app.use(session({
 app.use('/api', routes);
 
 //new route for login
-app.post('/index.login.html', (req, res) => {
+app.post('/api/login', (req, res) => {
   const { username, password } = req.body;
 
   // Your user verification logic here
@@ -70,7 +70,7 @@ app.post('/index.login.html', (req, res) => {
 });
 
 // New route to fetch reviews
-app.get('/index.reviews.html', async (req, res) => {
+app.get('/api/reviews', async (req, res) => {
   const apiUrl = 'https://idesignwebsite-905e545d981b981b.herokuapp.com/api/index.reviews.html';
 
   try {
