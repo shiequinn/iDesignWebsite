@@ -1,5 +1,5 @@
 // Define API base URL
-const API_PROXY_URL = 'https://idesignwebsite-905e545d981b981b.herokuapp.com/api/reviews'; // Adjust this if your API endpoint is different
+const API_PROXY_URL = 'https://idesignwebsite-905e545d981b.herokuapp.com/api/reviews'; // Adjust this if your API endpoint is different
 
 document.addEventListener('DOMContentLoaded', () => {
   const reviewWrapper = document.getElementById('reviewWrapper');
@@ -174,6 +174,7 @@ stars.forEach((star, index) => {
     if (ratingInput) ratingInput.value = selectedRating;
   });
 });
+});
 
 // Hamburger menu toggle
 const hamburger = document.querySelector('.hamburger');
@@ -207,4 +208,4 @@ if (goToReviewsBtn) {
   goToReviewsBtn.addEventListener('click', () => {
     window.location.href = '/index.reviews.html';
   });
-}}); 
+};

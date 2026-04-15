@@ -57,10 +57,10 @@ app.use(session({
 }));
 
 // Use your imported routes
-app.use('/api', routes);
+app.use('/api/reviews', routes);
 
 // Login route
-app.post('/login', (req, res) => {
+app.post('/api/login', (req, res) => {
   const { username, password } = req.body;
   // Your user verification logic here
   if (username === 'admin' && password === 'password123') {
@@ -71,7 +71,7 @@ app.post('/login', (req, res) => {
 });
 
 // Route to fetch reviews
-app.get('/reviews', async (req, res) => {
+app.get('/api/reviews', async (req, res) => {
   const apiUrl = "https://shiequinn.com/api/index.reviews"; // Replace with your actual API endpoint
 
   try {
