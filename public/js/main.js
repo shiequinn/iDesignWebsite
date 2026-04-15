@@ -1,5 +1,5 @@
 // Define API base URL
-const API_PROXY_URL = 'https://shiequinn.com/api/reviews'; // Adjust this if your API endpoint is different
+const API_PROXY_URL = 'https://shiequinn.com/index.review.html'; // Adjust this if your API endpoint is different
 
 document.addEventListener('DOMContentLoaded', () => {
   const reviewWrapper = document.getElementById('reviewWrapper');
@@ -41,22 +41,26 @@ async function loadReviews() {
       throw new Error(`Expected JSON response, but received: ${contentType}`);
     }
 
-    const data = await response.text();
+  const data = await response.text();
 
-    if (data) {
-      try {
-        const reviews = JSON.parse(data);
-        // Do NOT clear existing reviews
-        reviews.forEach(review => {
-          const reviewItem = createReviewItem(review);
-          reviewWrapper.appendChild(reviewItem);
-        });
-      } catch (error) {
-        console.error('Failed to parse reviews JSON:', error);
-      }
-    } else {
-      console.log('No reviews found.');
-    }
+if (data.trim()) {
+  try {
+    const reviews = JSON.parse(data);
+    // process reviews
+  } catch (error) {
+    console.error('Failed to parse reviews JSON:', error);
+  }
+} else {
+  console.log('No reviews found or empty response.');
+}
+// Check if the response is successful
+if (!response.ok) {
+  if (response.status === 404) {
+    console.warn('API endpoint not found');
+  } else {
+    throw new Error(`Network response was not ok: ${response.status}`);
+  }
+}
 
     initializeSwiper();
 
@@ -103,25 +107,37 @@ async function loadReviews() {
       alert('An error occurred: ' + err.message);
     }
   });
+  
+// Initialize Swiper
+let reviewSwiper;
 
-  // Initialize Swiper for reviews
-  let mySwiper;
-  function initializeSwiper() {
-    if (mySwiper) {
-      mySwiper.destroy(true, true);
-    }
-    if (document.querySelector('#reviewSwiper')) {
-      mySwiper = new Swiper('#reviewSwiper', {
-        slidesPerView: 1,
-        spaceBetween: 20,
-        navigation: {
-          nextEl: '#nextBtn',
-          prevEl: '#prevBtn',
-        },
-        loop: true,
-      });
-    }
-  }
+function initReviewSwiper() {
+  if (reviewSwiper) reviewSwiper.destroy(true, true);
+  reviewSwiper = new Swiper('.mySwiper', {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    navigation: {
+      nextEl: '#nextBtn',
+      prevEl: '#prevBtn',
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    breakpoints: {
+      640: {
+        slidesPerView: 2,
+      },
+      1024: {
+        slidesPerView: 3,
+      },
+    },
+  });
+}
+
+// Call on DOM load
+document.addEventListener('DOMContentLoaded', initReviewSwiper);
 
   // Star rating interactivity
   const stars = document.querySelectorAll('.star-rating .star');
@@ -151,7 +167,8 @@ async function loadReviews() {
       highlightStars(selectedRating);
       if (ratingInput) ratingInput.value = selectedRating;
     });
-  });
+  
+ });
 
   // Load initial reviews
   loadReviews();
