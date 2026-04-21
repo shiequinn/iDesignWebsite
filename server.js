@@ -72,7 +72,7 @@ app.post('/api/login', (req, res) => {
 
 // Route to fetch reviews
 app.get('/api/reviews', async (req, res) => {
-  const apiUrl = "https://shiequinn.com/api/index.reviews"; // Replace with your actual API endpoint
+  const apiUrl = "https://idesignwebsite-905e545d981b.herokuapp.com/index.review.html"; // Replace with your actual API endpoint
 
   try {
     const response = await fetch(apiUrl);
