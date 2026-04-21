@@ -73,9 +73,10 @@ async function loadReviews() {
         reviewWrapper.innerHTML = '';
 
         if (Array.isArray(reviews) && reviews.length > 0) {
-          reviews.forEach(review => {
-            reviewWrapper.appendChild(createReviewItem(review));
-          });
+         reviews.forEach(review => {
+         console.log('Review:', review);
+         reviewWrapper.appendChild(createReviewItem(review));
+});
         } else {
           reviewWrapper.innerHTML = '<p>No reviews available.</p>';
         }
@@ -133,6 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error('Fetch error:', err);
       alert('An error occurred: ' + err.message);
     }
+    
   });
 
   // Star rating interactivity
