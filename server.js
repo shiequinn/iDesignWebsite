@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import express from 'express';
+import bcrypt from 'bcrypt';
 import cors from 'cors';
 import session from 'express-session';
 import pool from './db.js'; 
@@ -29,6 +30,13 @@ const allowedOrigins = [
   'http://127.0.0.1:5501',
   'http://localhost:5501',
 ];
+const mysql = require('mysql');
+const connection = mysql.createConnection({
+  host: 'd1kb8x1fu8rhcnej.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+  user: 'a9a1kyqcj8r1g7kf',
+  password: 'fshfpdflpsym5f0w ',
+  database: 'xbxm73r0k93viqkl'
+});
 
 // CORS configuration
 app.use(cors({
@@ -61,12 +69,18 @@ app.use('/api/reviews', routes);
 // Login route
 app.post('/api/login', (req, res) => {
   const { username, password } = req.body;
-  // Your user verification logic here
-  if (username === 'admin' && password === 'password123') {
-    res.status(200).json({ message: 'Login successful' });
-  } else {
-    res.status(401).json({ message: 'Invalid credentials' });
-  }
+  connection.query('SELECT * FROM xbxm73r0k93viqkl.users WHERE username = ?', [username], (err, results) => {
+    if (err) return res.status(500).json({ message: 'Database error' });
+    if (results.length === 0) return res.status(401).json({ message: 'Invalid username or password' });
+    const user = results[0];
+    // Verify password (hash comparison)
+    if (password === user.password) { // replace with hash check in production
+      // Generate token, etc.
+      res.json({ message: 'Login successful', token: 'your_generated_token' });
+    } else {
+      res.status(401).json({ message: 'Invalid username or password' });
+    }
+  });
 });
 
 // Route to fetch reviews from database
@@ -86,4 +100,15 @@ app.get('/', (req, res) => res.send('Hello World'));
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
+});
+// When creating users:
+const hashedPassword = await bcrypt.hash(plainPassword, 10);
+
+// During login verification:
+bcrypt.compare(password, user.password, (err, result) => {
+  if (result) {
+    // Password match
+  } else {
+    // Invalid password
+  }
 });
