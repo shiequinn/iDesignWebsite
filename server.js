@@ -18,7 +18,7 @@ const app = express();
 
 app.use(express.static('public'));
 app.use(express.json());
-app.use('/api', loginRoute);
+app.use('/', loginRoute);
 
 // Allowed origins for CORS
 const allowedOrigins = [
