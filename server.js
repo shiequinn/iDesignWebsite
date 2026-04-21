@@ -4,7 +4,6 @@ dotenv.config();
 import express from 'express';
 import cors from 'cors';
 import session from 'express-session';
-import fetch from 'node-fetch'; // ensure node-fetch is installed
 import pool from './db.js'; 
 import routes from './routes.js';
 import loginRoute from './loginRoute.js';
@@ -44,13 +43,13 @@ app.use(cors({
   optionsSuccessStatus: 200,
 }));
 
-// Session configuration with conditional secure flag
+// Session configuration
 app.use(session({
   secret: process.env.SECRET_KEY || 'defaultsecret',
   resave: false,
   saveUninitialized: false,
   cookie: {
-    secure: process.env.NODE_ENV === 'production', // true in production
+    secure: process.env.NODE_ENV === 'production',
     httpOnly: true,
     sameSite: 'lax'
   }
@@ -70,16 +69,13 @@ app.post('/api/login', (req, res) => {
   }
 });
 
-// Route to fetch reviews
+// Route to fetch reviews from database
 app.get('/api/reviews', async (req, res) => {
-  const apiUrl = "https://idesignwebsite-905e545d981b.herokuapp.com/index.review.html"; // Replace with your actual API endpoint
-
   try {
-    const response = await fetch(apiUrl);
-    const data = await response.json();
-    res.json(data);
+    const result = await pool.query('SELECT * FROM xbxm73r0k93viqkl.reviews');
+    res.json(result.rows);
   } catch (error) {
-    console.error('Error fetching reviews:', error);
+    console.error('Error fetching reviews from DB:', error);
     res.status(500).json({ error: 'Failed to fetch reviews' });
   }
 });
