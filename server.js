@@ -57,6 +57,8 @@ app.use(session({
 
 // Use your imported routes
 app.use('/api/reviews', routes);
+// app.use('/api/login', loginRoute); // Login route is now handled in loginRoute.js
+app.use('/api', routes);
 
 // Login route
 app.post('/api/login', async (req, res) => {

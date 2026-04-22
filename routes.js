@@ -65,5 +65,19 @@ router.get('/reviews', async (req, res) => {
     res.status(500).json({ message: 'Error fetching reviews' });
   }
 });
+// login route
+router.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+
+  // Replace with your user validation logic
+  if (email === 'yourEmail@example.com' && password === 'yourPassword') {
+    const jwtSecret = process.env.JWT_SECRET || 'default-secret';
+    const user = { email }; // You can add more user info here
+    const token = jwt.sign(user, jwtSecret, { expiresIn: '1h' });
+    res.json({ token });
+  } else {
+    res.status(401).json({ message: 'Invalid credentials' });
+  }
+});
 
 export default router;
