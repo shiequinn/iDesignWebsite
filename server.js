@@ -33,7 +33,6 @@ const allowedOrigins = [
 
 app.use(cors({
   origin: (origin, callback) => {
-    console.log('Request from origin:', origin);
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
@@ -42,6 +41,7 @@ app.use(cors({
   },
   optionsSuccessStatus: 200,
 }));
+
 
 // Session setup
 app.use(session({

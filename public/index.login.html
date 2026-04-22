@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css"> 
     <link rel="stylesheet" href="css/login.css">
+    
     <title>Login - iDesign by: A.N.S.Q Creating Website WEB Development Services</title>
 </head>
 <body>
@@ -22,19 +23,18 @@
 </div>
 
 <div class="login-container">
-<div class="login-section">
-  <h2>LOGIN</h2>
-  <form id="loginForm">
-    <label for="loginUsername">Username:</label>
-    <input type="text" id="loginUsername" required autocomplete="username">
+  <div class="login-section">
+    <h2>LOGIN</h2>
+    <form id="loginForm">
+      <label for="loginEmail">Email:</label>
+      <input type="email" id="loginEmail" name="loginEmail" required autocomplete="email">
 
-    <label for="loginPassword">Password:</label>
-    <input type="password" id="loginPassword" required autocomplete="current-password">
+      <label for="loginPassword">Password:</label>
+      <input type="password" id="loginPassword" name="loginPassword" required autocomplete="current-password">
 
-    <button type="submit">Log In</button>
-  </form>
-</div>
-</div>
+      <button type="submit">Log In</button>
+    </form>
+  </div>
 </div>
 <hr>
 
@@ -57,7 +57,7 @@
   document.getElementById('loginForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
-    const username = document.getElementById('loginUsername').value;
+    const email = document.getElementById('loginEmail').value;
     const password = document.getElementById('loginPassword').value;
 
     fetch('https://shiequinn.com/api/login', {
@@ -65,13 +65,13 @@
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ email: email, password: password }), // updated here
     })
     .then(response => {
       if (response.ok) {
         return response.json();
       } else {
-        throw new Error('Invalid username or password');
+        throw new Error('Invalid email or password');
       }
     })
     .then(data => {
@@ -80,8 +80,8 @@
         localStorage.setItem('authToken', data.token);
       }
       alert(data.message);
-      // Redirect to dashboard or another page
-      window.location.href = '/index.review.html'; // Adjust this to your desired page after login
+      // Redirect after login
+      window.location.href = '/index.review.html'; // adjust as needed
     })
     .catch(error => {
       alert(error.message);
