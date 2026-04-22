@@ -8,6 +8,7 @@ import session from 'express-session';
 import pool from './db.js'; 
 import routes from './routes.js';
 import loginRoute from './loginRoute.js';
+import mysql from 'mysql2';
 
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -30,7 +31,7 @@ const allowedOrigins = [
   'http://127.0.0.1:5501',
   'http://localhost:5501',
 ];
-const mysql = require('mysql');
+
 const connection = mysql.createConnection({
   host: 'd1kb8x1fu8rhcnej.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
   user: 'a9a1kyqcj8r1g7kf',
@@ -101,14 +102,10 @@ const port = process.env.PORT || 3001;
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
-// When creating users:
-const hashedPassword = await bcrypt.hash(plainPassword, 10);
-
-// During login verification:
-bcrypt.compare(password, user.password, (err, result) => {
-  if (result) {
-    // Password match
-  } else {
-    // Invalid password
-  }
+app.post('/register', async (req, res) => {
+  // Make sure to get the password from the request body
+  const plainPassword = req.body.password; // <-- assign the password here
+  const hashedPassword = await bcrypt.hash(plainPassword, 10);
+  // Save hashedPassword to your database
+  res.send('User registered successfully');
 });
