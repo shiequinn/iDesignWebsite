@@ -8,7 +8,6 @@ import session from 'express-session';
 import pool from './db.js'; 
 import routes from './routes.js';
 import loginRoute from './loginRoute.js';
-import mysql from 'mysql2';
 
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -32,14 +31,6 @@ const allowedOrigins = [
   'http://localhost:5501',
 ];
 
-const connection = mysql.createConnection({
-  host: 'd1kb8x1fu8rhcnej.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
-  user: 'a9a1kyqcj8r1g7kf',
-  password: 'fshfpdflpsym5f0w ',
-  database: 'xbxm73r0k93viqkl'
-});
-
-// CORS configuration
 app.use(cors({
   origin: (origin, callback) => {
     console.log('Request from origin:', origin);
@@ -52,7 +43,7 @@ app.use(cors({
   optionsSuccessStatus: 200,
 }));
 
-// Session configuration
+// Session setup
 app.use(session({
   secret: process.env.SECRET_KEY || 'defaultsecret',
   resave: false,
@@ -68,44 +59,67 @@ app.use(session({
 app.use('/api/reviews', routes);
 
 // Login route
-app.post('/api/login', (req, res) => {
+app.post('/api/login', async (req, res) => {
   const { username, password } = req.body;
-  connection.query('SELECT * FROM xbxm73r0k93viqkl.users WHERE username = ?', [username], (err, results) => {
-    if (err) return res.status(500).json({ message: 'Database error' });
-    if (results.length === 0) return res.status(401).json({ message: 'Invalid username or password' });
+  try {
+    const [results] = await pool.query('SELECT * FROM xbxm73r0k93viqkl.users WHERE username = ?', [username]);
+    if (results.length === 0) {
+      return res.status(401).json({ message: 'Invalid username or password' });
+    }
     const user = results[0];
-    // Verify password (hash comparison)
-    if (password === user.password) { // replace with hash check in production
-      // Generate token, etc.
-      res.json({ message: 'Login successful', token: 'your_generated_token' });
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (isMatch) {
+      res.json({ message: 'Login successful', userId: user.id });
     } else {
       res.status(401).json({ message: 'Invalid username or password' });
     }
-  });
+  } catch (err) {
+    res.status(500).json({ message: 'Database error' });
+  }
 });
 
-// Route to fetch reviews from database
+// Function to hash existing passwords (run once if needed)
+async function hashPasswords() {
+  try {
+    const [users] = await pool.query('SELECT * FROM xbxm73r0k93viqkl.users');
+    for (const user of users) {
+      const hashed = await bcrypt.hash(user.password, 10);
+      await pool.query('UPDATE xbxm73r0k93viqkl.users SET password = ? WHERE id = ?', [hashed, user.id]);
+    }
+    console.log('Password hashing completed.');
+  } catch (err) {
+    console.error('Error hashing passwords:', err);
+  }
+}
+// Uncomment this line to run hashing once
+// hashPasswords();
+
+// Register route
+app.post('/register', async (req, res) => {
+  const { username, password } = req.body;
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    await pool.query('INSERT INTO xbxm73r0k93viqkl.users (username, password) VALUES (?, ?)', [username, hashedPassword]);
+    res.send('User registered successfully');
+  } catch (err) {
+    res.status(500).send('Error registering user');
+  }
+});
+
+// Fetch reviews
 app.get('/api/reviews', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM xbxm73r0k93viqkl.reviews');
-    res.json(result.rows);
+    const [result] = await pool.query('SELECT * FROM xbxm73r0k93viqkl.reviews');
+    res.json(result);
   } catch (error) {
     console.error('Error fetching reviews from DB:', error);
     res.status(500).json({ error: 'Failed to fetch reviews' });
   }
 });
 
-// Optional root route
 app.get('/', (req, res) => res.send('Hello World'));
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
-});
-app.post('/register', async (req, res) => {
-  // Make sure to get the password from the request body
-  const plainPassword = req.body.password; // <-- assign the password here
-  const hashedPassword = await bcrypt.hash(plainPassword, 10);
-  // Save hashedPassword to your database
-  res.send('User registered successfully');
 });
